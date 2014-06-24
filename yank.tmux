@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 yank_default="y"
 yank_option="@yank"
 
@@ -45,6 +47,23 @@ clipboard_copy_command() {
 	fi
 }
 
+set_error_bindings() {
+	local key_bindings="$(yank_key) $(put_key) $(yank_put_key)"
+	local key
+	for key in $key_bindings; do
+		tmux bind-key -t vi-copy    "$key" copy-pipe "$CURRENT_DIR/scripts/tmux_yank_error_message.sh"
+		tmux bind-key -t emacs-copy "$key" copy-pipe "$CURRENT_DIR/scripts/tmux_yank_error_message.sh"
+	done
+}
+
+error_handling_if_command_not_present() {
+	local copy_command="$1"
+	if [ -z "$copy_command" ]; then
+		set_error_bindings
+		exit 0
+	fi
+}
+
 set_bindings() {
 	local copy_command="$1"
 	tmux bind-key -t vi-copy "$(yank_key)"     copy-pipe "$copy_command"
@@ -58,6 +77,7 @@ set_bindings() {
 
 main() {
 	local copy_command="$(clipboard_copy_command)"
+	error_handling_if_command_not_present "$copy_command"
 	set_bindings "$copy_command"
 }
 main
