@@ -2,7 +2,17 @@
 
 Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
-Tmux **copy mode** mappings:
+Key bindings:
+- `prefix + y` - copies text from the command line to clipboard. It does **not**
+  mess up the command you're writing.<br/>
+  This feature works for any shell or repl where `readline` is enabled.
+  To test this check if `Ctrl-a` binding takes you to the start of the line.
+  This should work for all popular shells/repls, but please try out it for your
+  specific scenario.<br/>
+  Tested and working for: `bash`, `zsh` (with `bindkey -e`), `tcsh`, `irb`,
+  `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
+
+**copy mode** bindings:
 - `y` - copy selection to system clipboard
 - `Ctrl-y` - "put" selection - equivalent to copying a selection, and pasting it to the command line
 - `Alt-y` - performs both of the above: copy to system clipboard and
