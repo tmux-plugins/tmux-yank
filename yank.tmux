@@ -3,13 +3,13 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 yank_default="y"
-yank_option="@yank"
+yank_option="@copy_mode_yank"
 
 put_default="C-y"
-put_option="@put"
+put_option="@copy_mode_put"
 
 yank_put_default="M-y"
-yank_put_option="@yank_put"
+yank_put_option="@copy_mode_yank_put"
 
 get_tmux_option() {
 	local option="$1"
