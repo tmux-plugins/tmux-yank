@@ -4,22 +4,20 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
 Copy mode mappings:
 - `y` - copy selection to system clipboard
-- `C-y` - "put" selection to the command line
-- `M-y` (Alt + y) - performs both of the above: copy to system clipboard and
+- `Ctrl-y` - "put" selection - equivalent to copying a selection, and pasting it to the command line
+- `Alt-y` - performs both of the above: copy to system clipboard and
   put to command line
 
-### Requirements
-
-#### OS X
+#### OS X requirements
 
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)<br/>
   If you already don't have this installed, then:
   `$ brew install reattach-to-user-namespace`.
 
-#### Linux
+#### Linux requirements
 
 - `xclip` command<br/>
-  You most likely already have `xclip`, but if not install with:
+  You most likely already have `xclip`, but if not install:
   - Debian / Ubuntu: `$ sudo apt-get install xclip`
   - Red hat / CentOS: `$ yum install xclip`
 
