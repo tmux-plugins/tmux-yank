@@ -42,7 +42,8 @@ command_exists() {
 clipboard_copy_command() {
 	if command_exists "xclip"; then
 		echo "xclip"
-	elif command_exists "pbcopy"; then
+	# reattach-to-user-namespace is required for OS X
+	elif command_exists "pbcopy" && command_exists "reattach-to-user-namespace"; then
 		echo "reattach-to-user-namespace pbcopy"
 	fi
 }
