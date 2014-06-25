@@ -2,7 +2,7 @@
 
 Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
-Copy mode mappings:
+Tmux **copy mode** mappings:
 - `y` - copy selection to system clipboard
 - `Ctrl-y` - "put" selection - equivalent to copying a selection, and pasting it to the command line
 - `Alt-y` - performs both of the above: copy to system clipboard and
