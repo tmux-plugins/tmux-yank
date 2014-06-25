@@ -2,6 +2,9 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+yank_line="y"
+yank_line_option="@yank_line"
+
 yank_default="y"
 yank_option="@copy_mode_yank"
 
@@ -20,6 +23,10 @@ get_tmux_option() {
 	else
 		echo "$option_value"
 	fi
+}
+
+yank_line_key() {
+	echo "$(get_tmux_option "$yank_line_option" "$yank_line")"
 }
 
 yank_key() {
@@ -65,7 +72,7 @@ error_handling_if_command_not_present() {
 	fi
 }
 
-set_bindings() {
+set_copy_mode_bindings() {
 	local copy_command="$1"
 	tmux bind-key -t vi-copy "$(yank_key)"     copy-pipe "$copy_command"
 	tmux bind-key -t vi-copy "$(put_key)"      copy-pipe "tmux paste-buffer"
@@ -76,9 +83,15 @@ set_bindings() {
 	tmux bind-key -t emacs-copy "$(yank_put_key)" copy-pipe "$copy_command; tmux paste-buffer"
 }
 
+set_copy_line_bindings() {
+	local copy_command="$1"
+	tmux bind-key "$(yank_line_key)" run-shell "$CURRENT_DIR/scripts/copy_line.sh $copy_command"
+}
+
 main() {
 	local copy_command="$(clipboard_copy_command)"
 	error_handling_if_command_not_present "$copy_command"
-	set_bindings "$copy_command"
+	set_copy_mode_bindings "$copy_command"
+	set_copy_line_bindings "$copy_command"
 }
 main
