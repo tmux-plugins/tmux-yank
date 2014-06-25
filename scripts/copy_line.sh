@@ -30,13 +30,19 @@ start_tmux_selection() {
 	fi
 }
 
+# works when command spans accross multiple lines
 end_of_line_in_copy_mode() {
 	if [ "$TMUX_COPY_MODE" == "vi" ]; then
 		# vi copy mode
-		tmux send-key '$'
+		# This sequence of keys consistently selects multiple lines
+		tmux send-key 'G'		# go the the bottom of scrollback buffer
+		tmux send-key 'b'		# beginning previous word
+		tmux send-key 'e'		# end of next word
 	else
 		# emacs copy mode
 		tmux send-key 'C-e'
+		tmux send-key 'M-b'
+		tmux send-key 'M-f'
 	fi
 }
 
