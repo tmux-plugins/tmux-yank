@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+TMUX_COPY_MODE=""
 
 source "$CURRENT_DIR/key_binding_helpers.sh"
 
 COPY_COMMAND="$*"
+
+# sets a TMUX_COPY_MODE that is used as a global variable
+get_tmux_copy_mode() {
+	TMUX_COPY_MODE="$(tmux show-option -gwv mode-keys)"
+}
 
 go_to_the_beginning_of_current_line() {
 	tmux send-key 'C-a'
@@ -15,11 +21,23 @@ enter_tmux_copy_mode() {
 }
 
 start_tmux_selection() {
-	tmux send-key 'Space'
+	if [ "$TMUX_COPY_MODE" == "vi" ]; then
+		# vi copy mode
+		tmux send-key 'Space'
+	else
+		# emacs copy mode
+		tmux send-key 'C-Space'
+	fi
 }
 
 end_of_line_in_copy_mode() {
-	tmux send-key '$'
+	if [ "$TMUX_COPY_MODE" == "vi" ]; then
+		# vi copy mode
+		tmux send-key '$'
+	else
+		# emacs copy mode
+		tmux send-key 'C-e'
+	fi
 }
 
 yank_to_clipboard() {
@@ -45,6 +63,7 @@ yank_current_line() {
 }
 
 main() {
+	get_tmux_copy_mode
 	yank_current_line
 }
 main
