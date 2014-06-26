@@ -9,8 +9,9 @@ Key bindings:
   To test this check if `Ctrl-a` binding takes you to the start of the line.
   This should work for all popular shells/repls, but please try out it for your
   specific scenario.<br/>
-  Tested and working for: `bash`, `zsh` (with `bindkey -e`), `tcsh`, `irb`,
-  `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
+  Tested and working for:
+  - shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
+  - repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
 
 **copy mode** bindings:
 - `y` - copy selection to system clipboard
@@ -21,13 +22,13 @@ Key bindings:
 #### OS X requirements
 
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)<br/>
-  If you already don't have this installed, then:
+  If you already don't have this, then install:
   `$ brew install reattach-to-user-namespace`.
 
 #### Linux requirements
 
 - `xclip` command<br/>
-  You most likely already have `xclip`, but if not install:
+  You most likely already have `xclip`, but if not:
   - Debian / Ubuntu: `$ sudo apt-get install xclip`
   - Red hat / CentOS: `$ yum install xclip`
 
