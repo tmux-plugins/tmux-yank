@@ -12,6 +12,7 @@ Key bindings:
   Tested and working for:
   - shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
   - repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
+  - remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
 
 **copy mode** bindings:
 - `y` - copy selection to system clipboard
