@@ -47,11 +47,17 @@ end_of_line_in_copy_mode() {
 	if [ "$TMUX_COPY_MODE" == "vi" ]; then
 		# vi copy mode
 		# This sequence of keys consistently selects multiple lines
-		tmux send-key 'G'		# go the the bottom of scrollback buffer
-		tmux send-key 'b'		# beginning previous word
-		tmux send-key 'e'		# end of next word
+		tmux send-key '150'		# Go to the bottom of scrollback buffer by using
+		tmux send-key 'j'		# 'down' key. 'vi' mode is faster so we're
+								# jumping more lines than emacs.
+		tmux send-key '$'		# End of line (just in case we are already at the last line).
+		tmux send-key 'b'		# Beginning of the previous word.
+		tmux send-key 'e'		# End of next word.
 	else
 		# emacs copy mode
+		for (( c=1; c<='30'; c++ )); do		# go to the bottom of scrollback buffer
+			tmux send-key 'C-n'
+		done
 		tmux send-key 'C-e'
 		tmux send-key 'M-b'
 		tmux send-key 'M-f'
