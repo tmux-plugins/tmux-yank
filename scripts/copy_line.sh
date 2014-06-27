@@ -3,6 +3,8 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 TMUX_COPY_MODE=""
 
+REMOTE_SHELL_WAIT_TIME="0.4"
+
 source "$CURRENT_DIR/key_binding_helpers.sh"
 
 COPY_COMMAND="$*"
@@ -12,8 +14,18 @@ get_tmux_copy_mode() {
 	TMUX_COPY_MODE="$(tmux show-option -gwv mode-keys)"
 }
 
+# The command when on ssh with latency. To make it work in this case too,
+# sleep is added.
+add_sleep_for_remote_shells() {
+	local pane_command="$(tmux display-message -p '#{pane_current_command}')"
+	if [[ "$pane_command" =~ (ssh|mosh) ]]; then
+		sleep "$REMOTE_SHELL_WAIT_TIME"
+	fi
+}
+
 go_to_the_beginning_of_current_line() {
 	tmux send-key 'C-a'
+	add_sleep_for_remote_shells
 }
 
 enter_tmux_copy_mode() {

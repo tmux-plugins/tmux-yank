@@ -2,6 +2,9 @@
 
 ### master
 
+- adds wait time for 'yank line' when in the remote shell (ssh, mosh) so yank
+  line is more correct
+
 ### v0.0.2, Jun 25, 2014
 
 - updated readme
