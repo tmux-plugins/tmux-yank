@@ -7,8 +7,6 @@ REMOTE_SHELL_WAIT_TIME="0.4"
 
 source "$CURRENT_DIR/key_binding_helpers.sh"
 
-COPY_COMMAND="$*"
-
 # sets a TMUX_COPY_MODE that is used as a global variable
 get_tmux_copy_mode() {
 	TMUX_COPY_MODE="$(tmux show-option -gwv mode-keys)"

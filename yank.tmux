@@ -47,14 +47,13 @@ set_copy_mode_bindings() {
 }
 
 set_copy_line_bindings() {
-	local copy_command="$1"
-	tmux bind-key "$(yank_line_key)" run-shell "$CURRENT_DIR/scripts/copy_line.sh $copy_command"
+	tmux bind-key "$(yank_line_key)" run-shell "$CURRENT_DIR/scripts/copy_line.sh"
 }
 
 main() {
 	local copy_command="$(clipboard_copy_command)"
 	error_handling_if_command_not_present "$copy_command"
 	set_copy_mode_bindings "$copy_command"
-	set_copy_line_bindings "$copy_command"
+	set_copy_line_bindings
 }
 main

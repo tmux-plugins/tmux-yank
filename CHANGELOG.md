@@ -6,6 +6,7 @@
   line is more correct
 - fix bug when yank-line is used in the last line in buffer. New 'solution' is
   implemented for copying multiple lines.
+- code cleanup
 
 ### v0.0.2, Jun 25, 2014
 
