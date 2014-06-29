@@ -18,6 +18,11 @@ clipboard_copy_command() {
 	fi
 }
 
+clipboard_copy_without_newline_command() {
+	local copy_command="$1"
+	echo "tr -d '\n' | $copy_command"
+}
+
 set_error_bindings() {
 	local key_bindings="$(yank_key) $(put_key) $(yank_put_key)"
 	local key
@@ -35,15 +40,20 @@ error_handling_if_command_not_present() {
 	fi
 }
 
+# `yank_without_newline` binding isn't intended to be used by the user. It is
+# a helper for `copy_line` command.
 set_copy_mode_bindings() {
 	local copy_command="$1"
+	local copy_wo_newline_command="$(clipboard_copy_without_newline_command "$copy_command")"
 	tmux bind-key -t vi-copy "$(yank_key)"     copy-pipe "$copy_command"
 	tmux bind-key -t vi-copy "$(put_key)"      copy-pipe "tmux paste-buffer"
 	tmux bind-key -t vi-copy "$(yank_put_key)" copy-pipe "$copy_command; tmux paste-buffer"
+	tmux bind-key -t vi-copy "$(yank_wo_newline_key)" copy-pipe "$copy_wo_newline_command"
 
 	tmux bind-key -t emacs-copy "$(yank_key)"     copy-pipe "$copy_command"
 	tmux bind-key -t emacs-copy "$(put_key)"      copy-pipe "tmux paste-buffer"
 	tmux bind-key -t emacs-copy "$(yank_put_key)" copy-pipe "$copy_command; tmux paste-buffer"
+	tmux bind-key -t emacs-copy "$(yank_wo_newline_key)" copy-pipe "$copy_wo_newline_command"
 }
 
 set_copy_line_bindings() {

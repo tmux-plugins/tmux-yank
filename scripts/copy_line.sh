@@ -63,7 +63,7 @@ end_of_line_in_copy_mode() {
 }
 
 yank_to_clipboard() {
-	tmux send-key "$(yank_key)"
+	tmux send-key "$(yank_wo_newline_key)"
 }
 
 go_to_the_end_of_current_line() {
