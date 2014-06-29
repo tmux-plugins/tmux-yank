@@ -2,6 +2,8 @@
 
 ### master
 
+### v0.0.3, Jun 29, 2014
+
 - adds wait time for 'yank line' when in the remote shell (ssh, mosh) so yank
   line is more correct
 - fix bug when yank-line is used in the last line in buffer. New 'solution' is
