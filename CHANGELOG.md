@@ -1,6 +1,7 @@
 # Changelog
 
 ### master
+- update readme to reflect github organization change
 
 ### v0.0.3, Jun 29, 2014
 

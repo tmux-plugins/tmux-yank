@@ -33,13 +33,13 @@ Key bindings:
   - Debian / Ubuntu: `$ sudo apt-get install xclip`
   - Red hat / CentOS: `$ yum install xclip`
 
-### Installation with [Tmux Plugin Manager](https://github.com/bruno-/tpm) (recommended)
+### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    set -g @tpm_plugins "              \
-      bruno-/tpm                       \
-      bruno-/tmux_yank                 \
+    set -g @tpm_plugins "          \
+      tmux-plugins/tpm             \
+      tmux-plugins/tmux-yank       \
     "
 
 Hit `prefix + I` to fetch the plugin and source it. You should now be able to
@@ -49,7 +49,7 @@ use the plugin.
 
 Clone the repo:
 
-    $ git clone https://github.com/bruno-/tmux_yank ~/clone/path
+    $ git clone https://github.com/tmux-plugins/tmux-yank ~/clone/path
 
 Add this line to the bottom of `.tmux.conf`:
 
@@ -64,7 +64,7 @@ You should now be able to use the plugin.
 
 ### Other Tmux goodies
 
-Tmux yank works well with [tmux copycat](https://github.com/bruno-/tmux_copycat).
+Tmux yank works well with [tmux copycat](https://github.com/tmux-plugins/tmux-copycat).
 
 ### License
 
