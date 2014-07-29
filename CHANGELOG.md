@@ -1,6 +1,8 @@
 # Changelog
 
 ### master
+
+### v0.0.4, Jul 29, 2014
 - update readme to reflect github organization change
 - add screencast script file
 - import screencast project
