@@ -2,7 +2,12 @@
 
 Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
-Key bindings:
+### Screencast
+
+[![screencast screenshot](/video/screencast_img.png)](https://vimeo.com/102039099)
+
+### Key bindings
+
 - `prefix + y` - copies text from the command line to clipboard. It does **not**
   mess up the command you're writing.<br/>
   This feature works for any shell or repl where `readline` is enabled.

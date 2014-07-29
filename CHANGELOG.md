@@ -5,6 +5,7 @@
 - add screencast script file
 - import screencast project
 - add `video/README.md`
+- put screencast in the readme
 
 ### v0.0.3, Jun 29, 2014
 
