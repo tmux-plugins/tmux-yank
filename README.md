@@ -8,13 +8,8 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
 ### Key bindings
 
-- `prefix + y` - copies text from the command line to clipboard. It does **not**
-  mess up the command you're writing.<br/>
-  This feature works for any shell or repl where `readline` is enabled.
-  To test this check if `Ctrl-a` binding takes you to the start of the line.
-  This should work for all popular shells/repls, but please try out it for your
-  specific scenario.<br/>
-  Tested and working for:
+- `prefix + y` - copies text from the command line to clipboard.<br/>
+  Works with all popular shells/repls. Tested with:
   - shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
   - repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
   - remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
@@ -28,7 +23,7 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 #### OS X requirements
 
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)<br/>
-  If you already don't have this, then install:
+  If you don't have this already, then install:
   `$ brew install reattach-to-user-namespace`.
 
 #### Linux requirements

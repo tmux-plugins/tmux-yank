@@ -1,6 +1,7 @@
 # Changelog
 
 ### master
+- simplify README
 
 ### v0.0.4, Jul 29, 2014
 - update readme to reflect github organization change
