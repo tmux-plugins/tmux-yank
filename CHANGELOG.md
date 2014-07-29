@@ -3,6 +3,7 @@
 ### master
 - update readme to reflect github organization change
 - add screencast script file
+- import screencast project
 
 ### v0.0.3, Jun 29, 2014
 
