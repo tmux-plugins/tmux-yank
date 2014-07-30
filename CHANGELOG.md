@@ -2,6 +2,9 @@
 
 ### master
 - simplify README
+- remove screencast from the master branch because it's too large for download.
+  The screencast is moved to the separate `screencast` branch and can be cloned
+  from there.
 
 ### v0.0.4, Jul 29, 2014
 - update readme to reflect github organization change
