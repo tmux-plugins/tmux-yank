@@ -1,17 +1,14 @@
 # Changelog
 
 ### master
+- update readme to reflect github organization change
+- add screencast script file
+- import screencast project
+- put screencast in the readme
 - simplify README
 - remove screencast from the master branch because it's too large for download.
   The screencast is moved to the separate `screencast` branch and can be cloned
   from there.
-
-### v0.0.4, Jul 29, 2014
-- update readme to reflect github organization change
-- add screencast script file
-- import screencast project
-- add `video/README.md`
-- put screencast in the readme
 
 ### v0.0.3, Jun 29, 2014
 
