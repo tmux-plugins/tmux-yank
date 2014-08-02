@@ -27,8 +27,8 @@ set_error_bindings() {
 	local key_bindings="$(yank_key) $(put_key) $(yank_put_key)"
 	local key
 	for key in $key_bindings; do
-		tmux bind-key -t vi-copy    "$key" copy-pipe "$CURRENT_DIR/scripts/tmux_yank_error_message.sh"
-		tmux bind-key -t emacs-copy "$key" copy-pipe "$CURRENT_DIR/scripts/tmux_yank_error_message.sh"
+		tmux bind-key -t vi-copy    "$key" copy-pipe "tmux display-message 'Error! tmux-yank dependencies not installed!'"
+		tmux bind-key -t emacs-copy "$key" copy-pipe "tmux display-message 'Error! tmux-yank dependencies not installed!'"
 	done
 }
 
