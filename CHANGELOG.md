@@ -6,6 +6,7 @@
   The screencast is moved to the separate `screencast` branch and can be cloned
   from there.
 - show error message if plugin dependencies aren't insalled
+- update README related plugins list
 
 ### v0.0.4, Jul 29, 2014
 - update readme to reflect github organization change

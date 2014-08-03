@@ -64,7 +64,9 @@ You should now be able to use the plugin.
 
 ### Other Tmux goodies
 
-Tmux yank works well with [tmux copycat](https://github.com/tmux-plugins/tmux-copycat).
+Tmux yank works well with
+[tmux copycat](https://github.com/tmux-plugins/tmux-copycat) and
+[tmux-open](https://github.com/tmux-plugins/tmux-open) plugins.
 
 ### License
 
