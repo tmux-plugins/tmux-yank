@@ -7,6 +7,7 @@
   from there.
 - show error message if plugin dependencies aren't insalled
 - update README related plugins list
+- update README to show how to update xclip selection on Linux
 
 ### v0.0.4, Jul 29, 2014
 - update readme to reflect github organization change
