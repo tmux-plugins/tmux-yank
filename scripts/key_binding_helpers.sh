@@ -13,6 +13,9 @@ yank_put_option="@copy_mode_yank_put"
 yank_wo_newline_default="!"
 yank_wo_newline_option="@copy_mode_yank_wo_newline"
 
+yank_xclip_selection_default="c"
+yank_xclip_selection_option="@yank_selection"
+
 # helper functions
 get_tmux_option() {
 	local option="$1"
@@ -43,6 +46,10 @@ yank_put_key() {
 
 yank_wo_newline_key() {
 	echo "$(get_tmux_option "$yank_wo_newline_option" "$yank_wo_newline_default")"
+}
+
+yank_xclip_selection() {
+	echo "$(get_tmux_option "$yank_xclip_selection_option" "$yank_xclip_selection_default")"
 }
 
 # Ensures a message is displayed for 5 seconds in tmux prompt.

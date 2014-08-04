@@ -11,7 +11,8 @@ command_exists() {
 
 clipboard_copy_command() {
 	if command_exists "xclip"; then
-		echo "xclip -selection c"
+		local xclip_selection="$(yank_xclip_selection)"
+		echo "xclip -selection $xclip_selection"
 	# reattach-to-user-namespace is required for OS X
 	elif command_exists "pbcopy" && command_exists "reattach-to-user-namespace"; then
 		echo "reattach-to-user-namespace pbcopy"
