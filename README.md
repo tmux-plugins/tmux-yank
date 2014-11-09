@@ -49,6 +49,12 @@ If copying is different on your system, and you need the command to be i.e.
     # in .tmux.conf
     set -g @yank_selection "primary"
 
+### Notes
+
+**Mouse Support**
+
+When making a selection using tmux `mode-mouse on` or `mode-mouse copy-mode`, you cannot rely on the default 'release mouse after selection to copy' behavior.  Instead, press `y` before releasing mouse.
+
 ### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
