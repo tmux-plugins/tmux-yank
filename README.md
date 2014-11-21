@@ -49,7 +49,7 @@ Copying to clipboard is done using `pbcopy`.
 Copying to clipboard is done using `xclip -selection clipboard` or `xsel --clipboard` command by default.
 
 If copying is different on your system, and you need the command to be i.e.
-`xclip -selection primary`, here's how to customize:
+`xclip -selection primary` or `xsel --primary`, here's how to customize:
 
     # in .tmux.conf
     set -g @yank_selection "primary"
