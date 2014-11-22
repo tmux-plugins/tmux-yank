@@ -28,15 +28,10 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
 #### Linux requirements
 
-- `xclip` command<br/>
-  You most likely already have `xclip`, but if not:
-  - Debian / Ubuntu: `$ sudo apt-get install xclip`
-  - Red hat / CentOS: `$ yum install xclip`
-
-- `xsel` command<br/>
-  You most likely already have `xsel`, but if not:
-  - Debian / Ubuntu: `$ sudo apt-get install xsel`
-  - Red hat / CentOS: `$ yum install xsel`
+- `xclip` OR `xsel` command<br/>
+  You most likely already have one of them, but if not:
+  - Debian / Ubuntu: `$ sudo apt-get install xclip` or `$ sudo apt-get install xsel`
+  - Red hat / CentOS: `$ yum install xclip` or `$ yum install xsel``
 
 ### Copy command
 
@@ -49,12 +44,12 @@ Copying to clipboard is done using `pbcopy`.
 Copying to clipboard is done using `xclip -selection clipboard` or `xsel --clipboard` command by default.
 
 If copying is different on your system, and you need the command to be i.e.
-`xclip -selection primary` or `xsel --primary`, here's how to customize:
+`xclip -selection primary` or `xsel -i --primary`, here's how to customize:
 
     # in .tmux.conf
     set -g @yank_selection "primary"
 
-Warning: Use long names as option ("primary", "secondary", "clipboard")
+Warning: Use full names as option ("primary", "secondary", "clipboard")
 
 ### Notes
 

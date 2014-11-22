@@ -18,7 +18,7 @@ clipboard_copy_command() {
 		echo "xclip -selection $xclip_selection"
 	elif command_exists "xsel"; then
 		local xsel_selection="$(yank_selection)"
-		echo "xsel --$xsel_selection"
+		echo "xsel -i --$xsel_selection"
 	fi
 }
 
