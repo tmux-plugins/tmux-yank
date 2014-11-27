@@ -13,6 +13,9 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
   - shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
   - repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
   - remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
+  - vim/neovim command line (requires
+    [vim-husk](https://github.com/bruno-/vim-husk) or
+    [vim-rsi](https://github.com/tpope/vim-rsi) plugin)
 
 **copy mode** bindings:
 - `y` - copy selection to system clipboard
