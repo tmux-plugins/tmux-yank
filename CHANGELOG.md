@@ -1,6 +1,8 @@
 # Changelog
 
 ### master
+
+### v1.0.0, Dec 06, 2014
 - simplify README
 - remove screencast from the master branch because it's too large for download.
   The screencast is moved to the separate `screencast` branch and can be cloned
