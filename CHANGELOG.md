@@ -1,6 +1,8 @@
 # Changelog
 
 ### master
+- change copy mode "put selection" key binding to `Y` so that vi mode `Ctrl-y`
+  is not overriden.
 
 ### v1.0.0, Dec 06, 2014
 - simplify README

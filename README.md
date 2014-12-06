@@ -6,6 +6,9 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
 [![screencast screenshot](/video/screencast_img.png)](https://vimeo.com/102039099)
 
+Note: screencast shows using the "put selection" feature with `Ctrl-y` key
+binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
+
 ### Key bindings
 
 - `prefix + y` - copies text from the command line to clipboard.<br/>
@@ -19,7 +22,8 @@ Enables copying to system clipboard in Tmux. Works on Linux and OS X.
 
 **copy mode** bindings:
 - `y` - copy selection to system clipboard
-- `Ctrl-y` - "put" selection - equivalent to copying a selection, and pasting it to the command line
+- `Y` (shift-y) - "put" selection - equivalent to copying a selection, and
+  pasting it to the command line
 - `Alt-y` - performs both of the above: copy to system clipboard and
   put to command line
 

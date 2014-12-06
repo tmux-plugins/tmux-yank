@@ -4,7 +4,7 @@ yank_line_option="@yank_line"
 yank_default="y"
 yank_option="@copy_mode_yank"
 
-put_default="C-y"
+put_default="Y"
 put_option="@copy_mode_put"
 
 yank_put_default="M-y"
