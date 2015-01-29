@@ -14,8 +14,11 @@ clipboard_copy_command() {
 	if command_exists "pbcopy" && command_exists "reattach-to-user-namespace"; then
 		echo "reattach-to-user-namespace pbcopy"
 	elif command_exists "xclip"; then
-		local xclip_selection="$(yank_xclip_selection)"
+		local xclip_selection="$(yank_selection)"
 		echo "xclip -selection $xclip_selection"
+	elif command_exists "xsel"; then
+		local xsel_selection="$(yank_selection)"
+		echo "xsel -i --$xsel_selection"
 	fi
 }
 
