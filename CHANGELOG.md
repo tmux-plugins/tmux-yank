@@ -1,6 +1,7 @@
 # Changelog
 
 ### master
+- add support for `xsel` on linux (@ctjhoa)
 
 ### v2.0.0, Dec 06, 2014
 - change copy mode "put selection" key binding to `Y` so that vi mode `Ctrl-y`
