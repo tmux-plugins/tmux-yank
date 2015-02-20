@@ -40,7 +40,7 @@ Alternatively, if you are using MacPorts, install via:<br/>
 - `xclip` OR `xsel` command<br/>
   You most likely already have one of them, but if not:
   - Debian / Ubuntu: `$ sudo apt-get install xclip` or `$ sudo apt-get install xsel`
-  - Red hat / CentOS: `$ yum install xclip` or `$ yum install xsel``
+  - Red hat / CentOS: `$ yum install xclip` or `$ yum install xsel`
 
 ### Copy command
 
@@ -56,9 +56,9 @@ If copying is different on your system, and you need the command to be i.e.
 `xclip -selection primary` or `xsel -i --primary`, here's how to customize:
 
     # in .tmux.conf
-    set -g @yank_selection "primary"
+    set -g @yank_selection 'primary'
 
-Warning: Use full names as option ("primary", "secondary", "clipboard")
+Warning: Use full names as option ('primary', 'secondary', 'clipboard')
 
 ### Notes
 
@@ -70,10 +70,10 @@ When making a selection using tmux `mode-mouse on` or `mode-mouse copy-mode`, yo
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    set -g @tpm_plugins "          \
+    set -g @tpm_plugins '          \
       tmux-plugins/tpm             \
       tmux-plugins/tmux-yank       \
-    "
+    '
 
 Hit `prefix + I` to fetch the plugin and source it. You should now be able to
 use the plugin.
@@ -97,9 +97,13 @@ You should now be able to use the plugin.
 
 ### Other Tmux goodies
 
-Tmux yank works well with
-[tmux copycat](https://github.com/tmux-plugins/tmux-copycat) and
-[tmux-open](https://github.com/tmux-plugins/tmux-open) plugins.
+- [tmux copycat](https://github.com/tmux-plugins/tmux-copycat) and
+- [tmux-open](https://github.com/tmux-plugins/tmux-open) plugins.
+- [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) - automatic
+  restoring and continuous saving of tmux env
+
+You might want to follow [@brunosutic](https://twitter.com/brunosutic) on
+twitter if you want to hear about new tmux plugins or feature updates.
 
 ### License
 
