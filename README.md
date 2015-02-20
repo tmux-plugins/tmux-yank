@@ -97,8 +97,10 @@ You should now be able to use the plugin.
 
 ### Other Tmux goodies
 
-- [tmux copycat](https://github.com/tmux-plugins/tmux-copycat) and
-- [tmux-open](https://github.com/tmux-plugins/tmux-open) plugins.
+- [tmux-copycat](https://github.com/tmux-plugins/tmux-copycat) - a plugin for
+  regex searches in tmux and fast match selection
+- [tmux-open](https://github.com/tmux-plugins/tmux-open) - a plugin for quickly
+  opening highlighted file or a url
 - [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) - automatic
   restoring and continuous saving of tmux env
 
