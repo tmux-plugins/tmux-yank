@@ -9,10 +9,19 @@ command_exists() {
 	type "$command" >/dev/null 2>&1
 }
 
+check_reattach_needed() {
+	# lexicographic comparison
+	[[ "$OSTYPE" == "darwin"*  ]] && [[ "${OSTYPE//darwin/}" < "14.0.0" ]]
+}
+
 clipboard_copy_command() {
 	# reattach-to-user-namespace is required for OS X
-	if command_exists "pbcopy" && command_exists "reattach-to-user-namespace"; then
-		echo "reattach-to-user-namespace pbcopy"
+	if command_exists "pbcopy"; then
+		if check_reattach_needed && command_exists "reattach-to-user-namespace"; then
+			echo "reattach-to-user-namespace pbcopy"
+		elif ! check_reattach_needed; then
+			echo "pbcopy"
+		fi
 	elif command_exists "xclip"; then
 		local xclip_selection="$(yank_selection)"
 		echo "xclip -selection $xclip_selection"
