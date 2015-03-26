@@ -12,9 +12,9 @@ command_exists() {
 clipboard_copy_command() {
 	# reattach-to-user-namespace is required for OS X
 	if command_exists "pbcopy"; then
-		if [[ "${OSTYPE//darwin/}" < "14.0.0" ]] && command_exists "reattach-to-user-namespace"; then
+		if command_exists "reattach-to-user-namespace"; then
 			echo "reattach-to-user-namespace pbcopy"
-		elif [[ "${OSTYPE//darwin/}" > "13.0.0" ]]; then
+		else
 			echo "pbcopy"
 		fi
 	elif command_exists "xclip"; then
