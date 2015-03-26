@@ -30,7 +30,9 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
 #### OS X requirements
 
 - [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)<br/>
-  If you don't have this already, then install:
+  *Note*: Beginning with OSX Yosemite (10.10), `pbcopy` is reported to work correctly with `tmux`, so we believe `reattach-to-user-namespace` is not needed anymore. Please install it in case the plugin doesn't work for you.
+
+  For previous OSX versions, you need to install it:
   `$ brew install reattach-to-user-namespace`.<br/>
 Alternatively, if you are using MacPorts, install via:<br/>
   `$ sudo port install tmux-pasteboard`
