@@ -2,6 +2,7 @@
 
 ### master
 - add support for `xsel` on linux (@ctjhoa)
+- make `reattach-to-user-namespace` on OS X optional (@bosr)
 
 ### v2.0.0, Dec 06, 2014
 - change copy mode "put selection" key binding to `Y` so that vi mode `Ctrl-y`
