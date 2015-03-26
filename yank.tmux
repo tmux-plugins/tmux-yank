@@ -10,7 +10,7 @@ command_exists() {
 }
 
 clipboard_copy_command() {
-	# reattach-to-user-namespace is required for OS X
+	# installing reattach-to-user-namespace is recommended on OS X
 	if command_exists "pbcopy"; then
 		if command_exists "reattach-to-user-namespace"; then
 			echo "reattach-to-user-namespace pbcopy"
