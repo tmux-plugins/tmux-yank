@@ -12,7 +12,8 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
 ### Key bindings
 
 - `prefix + y` - copies text from the command line to clipboard.<br/>
-  Works with all popular shells/repls. Tested with:
+  Works with all popular shells/repls (assuming you're using emacs key
+  bindings). Tested with:
   - shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
   - repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
   - remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
