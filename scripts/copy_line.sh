@@ -22,7 +22,11 @@ add_sleep_for_remote_shells() {
 }
 
 go_to_the_beginning_of_current_line() {
-	tmux send-key 'C-a'
+	if [ "$(shell_mode)" == "emacs" ]; then
+		tmux send-key 'C-a'
+	else
+		tmux send-key 'Escape' '0'
+	fi
 	add_sleep_for_remote_shells
 }
 
@@ -67,7 +71,11 @@ yank_to_clipboard() {
 }
 
 go_to_the_end_of_current_line() {
-	tmux send-keys 'C-e'
+	if [ "$(shell_mode)" == "emacs" ]; then
+		tmux send-keys 'C-e'
+	else
+		tmux send-keys '$' 'a'
+	fi
 }
 
 display_notice() {

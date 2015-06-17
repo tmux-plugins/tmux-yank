@@ -16,6 +16,9 @@ yank_wo_newline_option="@copy_mode_yank_wo_newline"
 yank_selection_default="clipboard"
 yank_selection_option="@yank_selection"
 
+shell_mode_default="emacs"
+shell_mode_option="@shell_mode"
+
 # helper functions
 get_tmux_option() {
 	local option="$1"
@@ -52,6 +55,9 @@ yank_selection() {
 	echo "$(get_tmux_option "$yank_selection_option" "$yank_selection_default")"
 }
 
+shell_mode() {
+	echo "$(get_tmux_option "$shell_mode_option" "$shell_mode_default")"
+}
 # Ensures a message is displayed for 5 seconds in tmux prompt.
 # Does not override the 'display-time' tmux option.
 display_message() {
