@@ -22,7 +22,7 @@ add_sleep_for_remote_shells() {
 }
 
 go_to_the_beginning_of_current_line() {
-	tmux send-key 'C-a'
+	tmux send-key 'C-b'
 	add_sleep_for_remote_shells
 }
 
