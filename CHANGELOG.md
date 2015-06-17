@@ -1,6 +1,8 @@
 # Changelog
 
 ### master
+
+### v2.1.0, Jun 17, 2015
 - add support for `xsel` on linux (@ctjhoa)
 - make `reattach-to-user-namespace` on OS X optional (@bosr)
 - support for shell `vi` mode (@xnaveira)
