@@ -12,8 +12,7 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
 ### Key bindings
 
 - `prefix + y` - copies text from the command line to clipboard.<br/>
-  Works with all popular shells/repls (assuming you're using emacs key
-  bindings). Tested with:
+  Works with all popular shells/repls. Tested with:
   - shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
   - repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
   - remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
@@ -67,7 +66,14 @@ Warning: Use full names as option ('primary', 'secondary', 'clipboard')
 
 **Mouse Support**
 
-When making a selection using tmux `mode-mouse on` or `mode-mouse copy-mode`, you cannot rely on the default 'release mouse after selection to copy' behavior.  Instead, press `y` before releasing mouse.
+When making a selection using tmux `mode-mouse on` or `mode-mouse copy-mode`,
+you cannot rely on the default 'release mouse after selection to copy' behavior.
+Instead, press `y` before releasing mouse.
+
+**Shell vi mode compatibility**
+
+    # in .tmux.conf
+    set -g @shell_mode 'vi'
 
 ### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
