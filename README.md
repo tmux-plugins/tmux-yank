@@ -25,7 +25,7 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
 - `Y` (shift-y) - "put" selection - equivalent to copying a selection, and
   pasting it to the command line
 - `Alt-y` - performs both of the above: copy to system clipboard and
-  put to command line
+  put to command line (deprecated, not useful)
 
 #### OS X requirements
 
