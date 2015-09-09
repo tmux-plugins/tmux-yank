@@ -6,7 +6,7 @@ source "$CURRENT_DIR/scripts/key_binding_helpers.sh"
 
 command_exists() {
 	local command="$1"
-	type "$command" >/dev/null 2>&1
+	which "$command" >/dev/null 2>&1
 }
 
 clipboard_copy_command() {
