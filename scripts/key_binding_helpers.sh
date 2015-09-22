@@ -19,6 +19,9 @@ yank_selection_option="@yank_selection"
 shell_mode_default="emacs"
 shell_mode_option="@shell_mode"
 
+custom_copy_command_default=""
+custom_copy_command_option="@custom_copy_command"
+
 # helper functions
 get_tmux_option() {
 	local option="$1"
@@ -57,6 +60,10 @@ yank_selection() {
 
 shell_mode() {
 	echo "$(get_tmux_option "$shell_mode_option" "$shell_mode_default")"
+}
+
+custom_copy_command() {
+	echo "$(get_tmux_option "$custom_copy_command_option" "$custom_copy_command_default")"
 }
 # Ensures a message is displayed for 5 seconds in tmux prompt.
 # Does not override the 'display-time' tmux option.
