@@ -2,6 +2,9 @@
 
 ### master
 
+- add support for custom copy command (if xclip and others aren't accessible, and you want to have your
+  custom copy command)
+
 ### v2.1.0, Jun 17, 2015
 - add support for `xsel` on linux (@ctjhoa)
 - make `reattach-to-user-namespace` on OS X optional (@bosr)
