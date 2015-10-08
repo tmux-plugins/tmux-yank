@@ -23,6 +23,8 @@ clipboard_copy_command() {
 	elif command_exists "xsel"; then
 		local xsel_selection="$(yank_selection)"
 		echo "xsel -i --$xsel_selection"
+	elif command_exists "putclip"; then # cygwin clipboard command
+		echo "putclip"
 	elif [ -n "$(custom_copy_command)" ]; then
 		echo "$(custom_copy_command)"
 	fi

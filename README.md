@@ -46,6 +46,12 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
   - Debian / Ubuntu: `$ sudo apt-get install xclip` or `$ sudo apt-get install xsel`
   - Red hat / CentOS: `$ yum install xclip` or `$ yum install xsel`
 
+#### Cygwin requirements
+
+- `putclip` command<br/>
+  Get the command by installing `cygutils-extra` package with Cygwin's
+  `setup*.exe`.
+
 ### Notes
 
 **Mouse Support**

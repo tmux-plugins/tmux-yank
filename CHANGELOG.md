@@ -4,6 +4,7 @@
 
 - add support for custom copy command (if xclip and others aren't accessible, and you want to have your
   custom copy command)
+- add cygwin support via `putclip` command
 
 ### v2.1.0, Jun 17, 2015
 - add support for `xsel` on linux (@ctjhoa)
