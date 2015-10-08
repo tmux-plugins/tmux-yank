@@ -1,6 +1,8 @@
 # Tmux Yank
 
-Enables copying to system clipboard in Tmux. Works on Linux and OS X.
+Enables copying to system clipboard in Tmux.
+
+Tested and working on Linux, OSX and Cygwin.
 
 ### Screencast
 
