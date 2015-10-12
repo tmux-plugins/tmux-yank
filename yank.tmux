@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPTS_DIR="$CURRENT_DIR/scripts"
+HELPERS_DIR="$CURRENT_DIR/scripts"
 
-source "$CURRENT_DIR/scripts/helpers.sh"
+source "$HELPERS_DIR/helpers.sh"
 
 clipboard_copy_without_newline_command() {
 	local copy_command="$1"
@@ -43,8 +45,8 @@ set_copy_mode_bindings() {
 }
 
 set_normal_bindings() {
-	tmux bind-key "$(yank_line_key)" run-shell "$CURRENT_DIR/scripts/copy_line.sh"
-	tmux bind-key "$(yank_pane_pwd_key)" run-shell "$CURRENT_DIR/scripts/copy_pane_pwd.sh"
+	tmux bind-key "$(yank_line_key)" run-shell "$SCRIPTS_DIR/copy_line.sh"
+	tmux bind-key "$(yank_pane_pwd_key)" run-shell "$SCRIPTS_DIR/copy_pane_pwd.sh"
 }
 
 main() {

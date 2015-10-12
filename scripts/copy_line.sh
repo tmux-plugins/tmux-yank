@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+HELPERS_DIR="$CURRENT_DIR"
 TMUX_COPY_MODE=""
 
 REMOTE_SHELL_WAIT_TIME="0.4"
 
-source "$CURRENT_DIR/key_binding_helpers.sh"
+source "$HELPERS_DIR/helpers.sh"
 
 # sets a TMUX_COPY_MODE that is used as a global variable
 get_tmux_copy_mode() {

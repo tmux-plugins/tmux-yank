@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-SCRIPTS_DIR="$CURRENT_DIR"
 HELPERS_DIR="$CURRENT_DIR"
 
 source "$HELPERS_DIR/helpers.sh"
