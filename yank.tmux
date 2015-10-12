@@ -2,33 +2,7 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-source "$CURRENT_DIR/scripts/key_binding_helpers.sh"
-
-command_exists() {
-	local command="$1"
-	type "$command" >/dev/null 2>&1
-}
-
-clipboard_copy_command() {
-	# installing reattach-to-user-namespace is recommended on OS X
-	if command_exists "pbcopy"; then
-		if command_exists "reattach-to-user-namespace"; then
-			echo "reattach-to-user-namespace pbcopy"
-		else
-			echo "pbcopy"
-		fi
-	elif command_exists "xclip"; then
-		local xclip_selection="$(yank_selection)"
-		echo "xclip -selection $xclip_selection"
-	elif command_exists "xsel"; then
-		local xsel_selection="$(yank_selection)"
-		echo "xsel -i --$xsel_selection"
-	elif command_exists "putclip"; then # cygwin clipboard command
-		echo "putclip"
-	elif [ -n "$(custom_copy_command)" ]; then
-		echo "$(custom_copy_command)"
-	fi
-}
+source "$CURRENT_DIR/scripts/helpers.sh"
 
 clipboard_copy_without_newline_command() {
 	local copy_command="$1"
@@ -68,14 +42,15 @@ set_copy_mode_bindings() {
 	tmux bind-key -t emacs-copy "$(yank_wo_newline_key)" copy-pipe "$copy_wo_newline_command"
 }
 
-set_copy_line_bindings() {
+set_normal_bindings() {
 	tmux bind-key "$(yank_line_key)" run-shell "$CURRENT_DIR/scripts/copy_line.sh"
+	tmux bind-key "$(yank_pane_pwd_key)" run-shell "$CURRENT_DIR/scripts/copy_pane_pwd.sh"
 }
 
 main() {
 	local copy_command="$(clipboard_copy_command)"
 	error_handling_if_command_not_present "$copy_command"
 	set_copy_mode_bindings "$copy_command"
-	set_copy_line_bindings
+	set_normal_bindings
 }
 main

@@ -1,6 +1,9 @@
 yank_line="y"
 yank_line_option="@yank_line"
 
+yank_pane_pwd="Y"
+yank_pane_pwd_option="@yank_pane_pwd"
+
 yank_default="y"
 yank_option="@copy_mode_yank"
 
@@ -36,6 +39,10 @@ get_tmux_option() {
 
 yank_line_key() {
 	echo "$(get_tmux_option "$yank_line_option" "$yank_line")"
+}
+
+yank_pane_pwd_key() {
+	echo "$(get_tmux_option "$yank_pane_pwd_option" "$yank_pane_pwd")"
 }
 
 yank_key() {
@@ -88,4 +95,30 @@ display_message() {
 
 	# restores original 'display-time' value
 	tmux set-option -gq display-time "$saved_display_time"
+}
+
+command_exists() {
+	local command="$1"
+	type "$command" >/dev/null 2>&1
+}
+
+clipboard_copy_command() {
+	# installing reattach-to-user-namespace is recommended on OS X
+	if command_exists "pbcopy"; then
+		if command_exists "reattach-to-user-namespace"; then
+			echo "reattach-to-user-namespace pbcopy"
+		else
+			echo "pbcopy"
+		fi
+	elif command_exists "xclip"; then
+		local xclip_selection="$(yank_selection)"
+		echo "xclip -selection $xclip_selection"
+	elif command_exists "xsel"; then
+		local xsel_selection="$(yank_selection)"
+		echo "xsel -i --$xsel_selection"
+	elif command_exists "putclip"; then # cygwin clipboard command
+		echo "putclip"
+	elif [ -n "$(custom_copy_command)" ]; then
+		echo "$(custom_copy_command)"
+	fi
 }

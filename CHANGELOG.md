@@ -1,6 +1,7 @@
 # Changelog
 
 ### master
+- add 'copy pane current directory' feature
 
 ### v2.2.0, Oct 12, 2015
 - add support for custom copy command (if xclip and others aren't accessible, and you want to have your

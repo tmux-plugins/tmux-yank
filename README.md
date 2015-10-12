@@ -22,6 +22,8 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
     [vim-husk](https://github.com/bruno-/vim-husk) or
     [vim-rsi](https://github.com/tpope/vim-rsi) plugin)
 
+- `prefix + Y` (shift-y) - copy pane current working directory to clipboard.
+
 **copy mode** bindings:
 - `y` - copy selection to system clipboard
 - `Y` (shift-y) - "put" selection - equivalent to copying a selection, and
