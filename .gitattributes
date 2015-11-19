@@ -4,3 +4,4 @@
 # These files are unfortunately not recognized as text files so
 # explicitly listing them here
 Vagrantfile eol=lf
+*.png binary
