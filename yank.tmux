@@ -45,8 +45,8 @@ set_copy_mode_bindings() {
 }
 
 set_normal_bindings() {
-	tmux bind-key "$(yank_line_key)" run-shell "$SCRIPTS_DIR/copy_line.sh"
-	tmux bind-key "$(yank_pane_pwd_key)" run-shell "$SCRIPTS_DIR/copy_pane_pwd.sh"
+	tmux bind-key "$(yank_line_key)" run-shell -b "$SCRIPTS_DIR/copy_line.sh"
+	tmux bind-key "$(yank_pane_pwd_key)" run-shell -b "$SCRIPTS_DIR/copy_pane_pwd.sh"
 }
 
 main() {
