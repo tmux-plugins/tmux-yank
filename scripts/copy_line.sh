@@ -3,6 +3,7 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HELPERS_DIR="$CURRENT_DIR"
 TMUX_COPY_MODE=""
+TMUX_START_SELECTION=""
 
 REMOTE_SHELL_WAIT_TIME="0.4"
 
@@ -11,6 +12,18 @@ source "$HELPERS_DIR/helpers.sh"
 # sets a TMUX_COPY_MODE that is used as a global variable
 get_tmux_copy_mode() {
 	TMUX_COPY_MODE="$(tmux show-option -gwv mode-keys)"
+}
+
+get_tmux_start_selection_key() {
+  default_key=""
+	if [ "$TMUX_COPY_MODE" == "vi" ]; then
+		# vi copy mode
+    default_key="Space"
+	else
+		# emacs copy mode
+    default_key="C-Space"
+	fi
+  TMUX_START_SELECTION=$(get_tmux_option "@tmux-yank-start-selection" "$default_key" )
 }
 
 # The command when on ssh with latency. To make it work in this case too,
@@ -36,13 +49,7 @@ enter_tmux_copy_mode() {
 }
 
 start_tmux_selection() {
-	if [ "$TMUX_COPY_MODE" == "vi" ]; then
-		# vi copy mode
-		tmux send-key 'Space'
-	else
-		# emacs copy mode
-		tmux send-key 'C-Space'
-	fi
+  tmux send-key $TMUX_START_SELECTION
 }
 
 # works when command spans accross multiple lines
@@ -95,6 +102,7 @@ yank_current_line() {
 
 main() {
 	get_tmux_copy_mode
+	get_tmux_start_selection_key
 	yank_current_line
 }
 main
