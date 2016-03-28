@@ -80,6 +80,15 @@ If copying is different on your system, and you need the command to be i.e.
 
 Use full names as option ('primary', 'secondary', 'clipboard')
 
+**User specified keybindings
+If user defined keybindings for start selection (e.g. ``'v'`` instead of ``'space'``) in tmux, let ``tmux-yank`` know by following:
+
+```
+set -g @tmux-yank-start-selection 'v'
+```
+
+This will makes ``prefix + y`` (copies text from the command line to clipboard) working properly
+
 ### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
