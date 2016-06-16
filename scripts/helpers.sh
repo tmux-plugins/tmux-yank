@@ -110,10 +110,10 @@ clipboard_copy_command() {
 		else
 			echo "pbcopy"
 		fi
-	elif command_exists "xclip"; then
+	elif [ -n "$DISPLAY" ] && command_exists "xclip"; then
 		local xclip_selection="$(yank_selection)"
 		echo "xclip -selection $xclip_selection"
-	elif command_exists "xsel"; then
+	elif [ -n "$DISPLAY" ] && command_exists "xsel"; then
 		local xsel_selection="$(yank_selection)"
 		echo "xsel -i --$xsel_selection"
 	elif command_exists "putclip"; then # cygwin clipboard command
