@@ -118,6 +118,8 @@ clipboard_copy_command() {
 		echo "xsel -i --$xsel_selection"
 	elif command_exists "putclip"; then # cygwin clipboard command
 		echo "putclip"
+	elif command_exists "lemonade"; then
+		echo "lemonade copy"
 	elif [ -n "$(custom_copy_command)" ]; then
 		echo "$(custom_copy_command)"
 	fi

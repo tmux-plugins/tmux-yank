@@ -43,10 +43,11 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
 
 #### Linux requirements
 
-- `xclip` OR `xsel` command<br/>
+- `xclip` OR `xsel` OR `lemonade` command<br/>
   You most likely already have one of them, but if not:
   - Debian / Ubuntu: `$ sudo apt-get install xclip` or `$ sudo apt-get install xsel`
   - Red hat / CentOS: `$ yum install xclip` or `$ yum install xsel`
+  - Instructions for installing `lemonade` are [here](https://github.com/pocke/lemonade)
 
 #### Cygwin requirements
 
