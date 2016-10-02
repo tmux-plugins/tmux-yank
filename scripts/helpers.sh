@@ -110,14 +110,16 @@ clipboard_copy_command() {
 		else
 			echo "pbcopy"
 		fi
-	elif command_exists "xclip"; then
+	elif command_exists "xclip" && [ -n "$DISPLAY" ]; then # only works if $DISPLAY set
 		local xclip_selection="$(yank_selection)"
 		echo "xclip -selection $xclip_selection"
-	elif command_exists "xsel"; then
+	elif command_exists "xsel" && [ -n "$DISPLAY" ]; then # also required $DISPLAY
 		local xsel_selection="$(yank_selection)"
 		echo "xsel -i --$xsel_selection"
 	elif command_exists "putclip"; then # cygwin clipboard command
 		echo "putclip"
+	elif [ "$OSTYPE" == "cygwin" ]; then # cygwin fall back to built-in /dev/clipboard
+		echo "cat > /dev/clipboard"
 	elif [ -n "$(custom_copy_command)" ]; then
 		echo "$(custom_copy_command)"
 	fi

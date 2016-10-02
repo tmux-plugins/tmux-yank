@@ -50,9 +50,12 @@ binding in copy mode. In `v2.0.0` this key binding was changed to `Y` (shift-y).
 
 #### Cygwin requirements
 
-- `putclip` command<br/>
-  Get the command by installing `cygutils-extra` package with Cygwin's
-  `setup*.exe`.
+- None!<br />
+  Now supports cygwin builtin /dev/clipboard.
+  Support still exists for the following if desired:
+  - `putclip` command <br />
+    Get the command by installing `cygutils-extra` package with Cygwin's
+    `setup*.exe`.
 
 ### Notes
 
