@@ -110,6 +110,8 @@ clipboard_copy_command() {
 		else
 			echo "pbcopy"
 		fi
+	elif command_exists "clip.exe"; then # WSL clipboard command
+		echo "clip.exe"
 	elif command_exists "xclip"; then
 		local xclip_selection="$(yank_selection)"
 		echo "xclip -selection $xclip_selection"
