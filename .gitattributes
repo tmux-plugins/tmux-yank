@@ -3,5 +3,8 @@
 
 # These files are unfortunately not recognized as text files so
 # explicitly listing them here
-Vagrantfile eol=lf
+Vagrantfile eol=lf linguist-vendored
 *.png binary
+
+# (Programming) Language
+static/* linguist-vendored
