@@ -1,4 +1,4 @@
-tmux Yank
+tmux-yank
 =========
 
 Copy to the system clipboard in [`tmux`](https://tmux.github.io/).
