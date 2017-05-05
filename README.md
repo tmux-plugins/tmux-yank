@@ -1,124 +1,182 @@
-Tmux Yank
+tmux Yank
 =========
 
-Enables copying to system clipboard in Tmux.
+Copy to the system clipboard in [`tmux`](https://tmux.github.io/).
 
-Tested and working on Linux, OSX and Cygwin.
+Supports:
 
-### Screencast
+-   Linux
+-   macOS
+-   Cygwin
+-   Windows Subsystem for Linux (WSL)
+
+Installing
+----------
+
+### Via TPM (recommended)
+
+The easiest way to install `tmux-yank` is via the [Tmux Plugin
+Manager](https://github.com/tmux-plugins/tpm).
+
+1.  Add plugin to the list of TPM plugins in `.tmux.conf`:
+
+    ``` tmux
+    set -g @plugin 'tmux-plugins/tmux-yank'
+    ```
+
+2.  Use <kbd>prefix</kbd>–<kbd>I</kbd> install `tmux-yank`. You should now
+    be able to `tmux-yank` immediately.
+3.  When you want to update `tmux-yank` use <kbd>prefix</kbd>–<kbd>U</kbd>.
+
+### Manual Installation
+
+1.  Clone the repository
+
+    ``` sh
+    $ git clone https://github.com/tmux-plugins/tmux-yank ~/clone/path
+    ```
+
+2.  Add this line to the bottom of `.tmux.conf`
+
+    ``` tmux
+    run-shell ~/clone/path/yank.tmux
+    ```
+
+3.  Reload the `tmux` environment
+
+    ``` sh
+    # type this inside tmux
+    $ tmux source-file ~/.tmux.conf
+    ```
+
+You should now be able to use `tmux-yank` immediately.
+
+Requirements
+------------
+
+In order for `tmux-yank` to work, there must be a program that store data in
+the system clipboard.
+
+### macOS
+
+-   [`reattach-to-user-namespace`](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+
+#### [HomeBrew](https://brew.sh/) (recommended)
+
+``` sh
+$ brew install reattach-to-user-namespace
+```
+
+#### MacPorts
+
+``` sh
+$ sudo port install tmux-pasteboard
+```
+
+**Note**: Beginning with OSX Yosemite (10.10), `pbcopy` is reported to work
+correctly with `tmux` without `reattach-to-user-namespace`.
+
+### Linux
+
+-   `xsel` (recommended) or `xclip`.
+
+#### Debian & Ubuntu
+
+``` sh
+$ sudo apt-get install xsel # or xclip
+```
+
+#### RedHat & CentOS
+
+``` sh
+$ sudo yum install xsel # or xclip
+```
+
+### Cygwin
+
+-   (*optional*) `putclip` which is part of the `cygutils-extra` package.
+
+### Windows Subsystem for Linux (WSL)
+
+-   `clip.exe` is shipped with Windows Subsystem for Linux.
+
+Configuration
+-------------
+
+### Key bindings
+
+-   Normal Mode
+    -   <kbd>prefix</kbd>–<kbd>y</kbd> — copies text from the command line
+        to the clipboard.
+
+        Works with all popular shells/repls. Tested with:
+
+        -   shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
+        -   repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`,
+            `coffee`
+        -   remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
+        -   vim/neovim command line (requires
+            [vim-husk](https://github.com/bruno-/vim-husk) or
+            [vim-rsi](https://github.com/tpope/vim-rsi) plugin)
+
+    -   <kbd>prefix</kbd>–<kbd>Y</kbd> — copy the current pane's current
+        working directory to the clipboard.
+
+-   Copy Mode
+    -   <kbd>y</kbd> — copy selection to system clipboard.
+    -   <kbd>Y</kbd> (shift-y) — "put" selection. Equivalent to copying a
+        selection, and pasting it to the command line.
+
+### Linux Clipboards
+
+Linux has several cut-and-paste clipboards: `primary`, `secondary`, and
+`clipboard`.
+
+You can change this by setting `@yank_selection`:
+
+``` tmux
+# ~/.tmux.conf
+
+set -g @yank_selection 'primary' # or 'secondary' or 'clipboard'
+```
+
+### Mouse Support
+
+When making a selection using `tmux` with `mode-mouse on` or
+`mode-mouse copy-mode`, you cannot rely on the default 'release mouse after
+selection to copy' behavior.
+
+Instead, press <kbd>y</kbd> before releasing mouse.
+
+### vi mode support
+
+If using `tmux` 2.3 or older *and* using vi keys then you'll have add the
+following configuration setting:
+
+``` tmux
+# ~/.tmux.conf
+
+set -g @shell_mode 'vi'
+```
+
+This isn't needed with `tmux` 2.4 or newer.
+
+### Screen-cast
 
 [![screencast
 screenshot](/video/screencast_img.png)](https://vimeo.com/102039099)
 
-Note: screencast shows using the "put selection" feature with `Ctrl-y` key
-binding in copy mode. In `v2.0.0` this key binding was changed to `Y`
-(shift-y).
+**Note**: The screen-cast uses <kbd>Control</kbd>–<kbd>y</kbd> for
+"put selection". Use <kbd>Y</kbd> in `v2.0.0` and later.
 
-### Key bindings
-
--   `prefix + y` - copies text from the command line to clipboard.<br/>
-    Works with all popular shells/repls. Tested with:
--   shells: `bash`, `zsh` (with `bindkey -e`), `tcsh`
--   repls: `irb`, `pry`, `node`, `psql`, `python`, `php -a`, `coffee`
--   remote shells: `ssh`, [mosh](http://mosh.mit.edu/)
--   vim/neovim command line (requires
-    [vim-husk](https://github.com/bruno-/vim-husk) or
-    [vim-rsi](https://github.com/tpope/vim-rsi) plugin)
-
--   `prefix + Y` (shift-y) - copy pane current working directory to
-    clipboard.
-
-**copy mode** bindings: - `y` - copy selection to system clipboard - `Y`
-(shift-y) - "put" selection - equivalent to copying a selection, and pasting
-it to the command line - `Alt-y` - performs both of the above: copy to
-system clipboard and put to command line (deprecated, not useful)
-
-#### OS X requirements
-
--   [reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)<br/>
-    Install with brew `$ brew install reattach-to-user-namespace` or
-    macports `$ sudo port install tmux-pasteboard`.
-
-*Note*: Beginning with OSX Yosemite (10.10), `pbcopy` is reported to work
-correctly with `tmux`, so we believe `reattach-to-user-namespace` is not
-needed anymore. Please install it in case the plugin doesn't work for you.
-
-#### Linux requirements
-
--   `xclip` OR `xsel` command<br/> You most likely already have one of them,
-    but if not:
--   Debian / Ubuntu: `$ sudo apt-get install xclip` or
-    `$ sudo apt-get install xsel`
--   Red hat / CentOS: `$ yum install xclip` or `$ yum install xsel`
-
-#### Cygwin requirements
-
--   `putclip` command<br/> Get the command by installing `cygutils-extra`
-    package with Cygwin's `setup*.exe`.
-
-### Notes
-
-**Mouse Support**
-
-When making a selection using tmux `mode-mouse on` or
-`mode-mouse copy-mode`, you cannot rely on the default 'release mouse after
-selection to copy' behavior. Instead, press `y` before releasing mouse.
-
-**Shell vi mode compatibility**
-
-    # in .tmux.conf
-    set -g @shell_mode 'vi'
-
-**Linux clipboard**
-
-Copying to clipboard is done using `xclip -selection clipboard` or
-`xsel --clipboard` command by default.
-
-If copying is different on your system, and you need the command to be i.e.
-`xclip -selection primary` or `xsel -i --primary`, here's how to customize:
-
-    # in .tmux.conf
-    set -g @yank_selection 'primary'
-
-Use full names as option ('primary', 'secondary', 'clipboard')
-
-### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
-
-Add plugin to the list of TPM plugins in `.tmux.conf`:
-
-    set -g @plugin 'tmux-plugins/tmux-yank'
-
-Hit `prefix + I` to fetch the plugin and source it. You should now be able
-to use the plugin.
-
-### Manual Installation
-
-Clone the repo:
-
-    $ git clone https://github.com/tmux-plugins/tmux-yank ~/clone/path
-
-Add this line to the bottom of `.tmux.conf`:
-
-    run-shell ~/clone/path/yank.tmux
-
-Reload TMUX environment:
-
-    # type this in terminal
-    $ tmux source-file ~/.tmux.conf
-
-You should now be able to use the plugin.
-
-### Other Tmux goodies
+### Other tmux plugins
 
 -   [tmux-copycat](https://github.com/tmux-plugins/tmux-copycat) - a plugin
-    for regex searches in tmux and fast match selection
+    for regular expression searches in tmux and fast match selection
 -   [tmux-open](https://github.com/tmux-plugins/tmux-open) - a plugin for
-    quickly opening highlighted file or a url
+    quickly opening highlighted file or a URL
 -   [tmux-continuum](https://github.com/tmux-plugins/tmux-continuum) -
-    automatic restoring and continuous saving of tmux env
-
-You might want to follow \[@brunosutic\](https://twitter.com/brunosutic) on
-twitter if you want to hear about new tmux plugins or feature updates.
+    automatic restoring and continuous saving of tmux environment.
 
 ### License
 
