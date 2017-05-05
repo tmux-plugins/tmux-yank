@@ -1,10 +1,11 @@
-# Force text files to have unix eols, so Windows/Cygwin does not break them
-*.* eol=lf
+# The linguist directives are for https://github.com/github/linguist
 
-# These files are unfortunately not recognized as text files so
-# explicitly listing them here
-Vagrantfile eol=lf linguist-vendored
+*.md   text eol=lf whitespace=blank-at-eol
+*.sh   text eol=lf whitespace=blank-at-eol diff=php
+*.tmux text eol=lf whitespace=blank-at-eol diff=php
+
+Vagrantfile text eol=lf linguist-vendored
+video/* linguist-documentation
+
+# Binary Types
 *.png binary
-
-# (Programming) Language
-static/* linguist-vendored
