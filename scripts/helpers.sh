@@ -1,3 +1,5 @@
+#!bash
+
 yank_line="y"
 yank_line_option="@yank_line"
 
@@ -29,7 +31,8 @@ custom_copy_command_option="@custom_copy_command"
 get_tmux_option() {
     local option="$1"
     local default_value="$2"
-    local option_value=$(tmux show-option -gqv "$option")
+    local option_value
+    option_value=$(tmux show-option -gqv "$option")
     if [ -z "$option_value" ]; then
         echo "$default_value"
     else
@@ -85,7 +88,8 @@ display_message() {
     fi
 
     # saves user-set 'display-time' option
-    local saved_display_time=$(get_tmux_option "display-time" "750")
+    local saved_display_time
+    saved_display_time=$(get_tmux_option "display-time" "750")
 
     # sets message display time to 5 seconds
     tmux set-option -gq display-time "$display_duration"
@@ -113,10 +117,12 @@ clipboard_copy_command() {
     elif command_exists "clip.exe"; then # WSL clipboard command
         echo "clip.exe"
     elif command_exists "xclip"; then
-        local xclip_selection="$(yank_selection)"
+        local xclip_selection
+        xclip_selection="$(yank_selection)"
         echo "xclip -selection $xclip_selection"
     elif command_exists "xsel"; then
-        local xsel_selection="$(yank_selection)"
+        local xsel_selection
+        xsel_selection="$(yank_selection)"
         echo "xsel -i --$xsel_selection"
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"

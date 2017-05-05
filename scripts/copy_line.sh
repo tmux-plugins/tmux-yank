@@ -16,7 +16,8 @@ get_tmux_copy_mode() {
 # The command when on ssh with latency. To make it work in this case too,
 # sleep is added.
 add_sleep_for_remote_shells() {
-    local pane_command="$(tmux display-message -p '#{pane_current_command}')"
+    local pane_command
+    pane_command="$(tmux display-message -p '#{pane_current_command}')"
     if [[ "$pane_command" =~ (ssh|mosh) ]]; then
         sleep "$REMOTE_SHELL_WAIT_TIME"
     fi
