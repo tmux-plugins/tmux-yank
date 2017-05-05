@@ -1,62 +1,119 @@
-CHANGELOG
-=========
+Change Log
+==========
 
-### master
+[master]
+--------
 
--   Add 'copy pane current directory' feature
+### Added
 
-### v2.2.0, Oct 12, 2015
+-   Tmux 2.4 support (@docwhat, @edi9999)
+-   Windows Subsystem for Linux (WSL) support via `clip.exe` (@lukewang1024)
+-   "copy pane current directory" feature (@bruno-)
+-   `yank_line` and `yank_pane_pwd` fork to prevent xclip from hanging Tmux
+    (@leoalekseyev)
 
--   Add support for custom copy command (if `xclip` and others aren't
+[v2.2.0] 2015-10-12
+-------------------
+
+### Added
+
+-   Support for custom copy command (if `xclip` and others aren't
     accessible, and you want to have your custom copy command)
--   Add Cygwin support via `putclip` command
+-   Cygwin support via `putclip` command
 
-### v2.1.0, Jun 17, 2015
+[v2.1.0] 2015-06-17
+-------------------
+
+### Added
 
 -   Add support for `xsel` on Linux (@ctjhoa)
--   Make `reattach-to-user-namespace` on OS X optional (@bosr)
 -   Support for shell `vi` mode (@xnaveira)
+
+### Updated
+
+-   Make `reattach-to-user-namespace` on OS X optional (@bosr)
 -   Deprecate <kbd>Alt</kbd>–<kbd>y</kbd>
 
-### v2.0.0, Dec 06, 2014
+[v2.0.0] 2014-12-06
+-------------------
 
--   Change copy mode *put selection* key binding to <kbd>Y</kbd> so that vi
-    mode <kbd>Ctrl</kbd>–<kbd>y</kbd> is not overridden.
+### Fixed
 
-### v1.0.0, Dec 06, 2014
+-   Change copy mode "put selection" key binding to <kbd>Y</kbd> so that vi
+    mode <kbd>Control</kbd>–<kbd>y</kbd> is not overridden.
 
--   Remove screen-cast from the master branch because it's too large for
-    download. The screen-cast is moved to the separate `screencast` branch
-    and can be cloned from there.
+[v1.0.0] 2014-12-06
+-------------------
+
+### Added
+
 -   Show error message if plugin dependencies aren't installed.
--   Update `README` related plugins list
--   Update `README` to show how to update `xclip` selection on Linux
--   Add vagrant-related setup files for testing on Linux
+-   Vagrant setup for manually testing Linux.
 
-### v0.0.4, Jul 29, 2014
+### Updated
 
--   Update `README` to reflect GitHub organization change
--   Add screen-cast script file
--   Import screen-cast project
--   Add `video/README.md`
--   Put screen-cast in the `README`
+-   `README`
+    -   Related plugin list
+    -   Instructions on updating `xclip` for Linux.
 
-### v0.0.3, Jun 29, 2014
+### Removed
 
--   Adds wait time for 'yank line' when in the remote shell (`ssh`, `mosh`)
-    to capture the most accurate value.
--   Fix bug when yank-line is used in the last line in buffer. New
-    'solution' is implemented for copying multiple lines.
+-   The screen-cast is moved into `screencast` branch.
+
+[v0.0.4] 2014-07-29
+-------------------
+
+### Updated
+
+-   `README` documentation; including a screen-cast.
+
+[v0.0.3] 2014-06-29
+-------------------
+
+### Added
+
+-   Wait when doing "yank line" when using a remote shell (`ssh`, `mosh`) to
+    ensure screen is updated.
+
+### Fixed
+
+-   Handle `yank-line` when used on the last line of buffer: copy multiple
+    lines.
+-   `yank-line` never yanks 'newline' char for multiple-line commands in
+    shell (this is actually tmux/bash bug).
+
+### Updated
+
 -   Code cleanup.
--   yank-line never yanks 'newline' char for multiple-line commands in shell
-    (this is actually tmux/bash bug).
 
-### v0.0.2, Jun 25, 2014
+[v0.0.2] 2014-06-25
+-------------------
 
--   Updated `README`.
--   For OS X, also check if `reattach-to-user-namespace` is installed.
--   Add a feature for copying current command line to clipboard.
+### Updated
 
-### v0.0.1, Jun 24, 2014
+    - `README`
+
+### Added
+
+    - In OS X: Check if `reattach-to-user-namespace` is installed.
+    - "copy current command line" feature.
+
+[v0.0.1] 2014-06-24
+-------------------
 
 -   First working version.
+
+Notes
+-----
+
+This change log is kept in <http://keepachangelog.com/> format.
+
+  [master]: https://github.com/tmux-plugins/tmux-yank/compare/v2.2.0...HEAD
+  [v2.2.0]: https://github.com/tmux-plugins/tmux-yank/compare/v2.1.0...v2.2.0
+  [v2.1.0]: https://github.com/tmux-plugins/tmux-yank/compare/v2.0.0...v2.1.0
+  [v2.0.0]: https://github.com/tmux-plugins/tmux-yank/compare/v1.0.0...v2.0.0
+  [v1.0.0]: https://github.com/tmux-plugins/tmux-yank/compare/v0.0.4...v1.0.0
+  [v0.0.4]: https://github.com/tmux-plugins/tmux-yank/compare/v0.0.3...v0.0.4
+  [v0.0.3]: https://github.com/tmux-plugins/tmux-yank/compare/v0.0.2...v0.0.3
+  [v0.0.2]: https://github.com/tmux-plugins/tmux-yank/compare/v0.0.1...v0.0.2
+  [v0.0.1]: https://github.com/tmux-plugins/tmux-yank/commits/v0.0.1
