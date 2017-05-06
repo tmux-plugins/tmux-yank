@@ -30,7 +30,6 @@ go_to_the_beginning_of_current_line() {
     else
         tmux send-key 'Escape' '0'
     fi
-    add_sleep_for_remote_shells
 }
 
 enter_tmux_copy_mode() {
@@ -94,18 +93,21 @@ go_to_the_end_of_current_line() {
     fi
 }
 
-display_notice() {
-    display_message 'Line copied to clipboard!'
-}
-
 yank_current_line() {
-    go_to_the_beginning_of_current_line
-    enter_tmux_copy_mode
-    start_tmux_selection
-    end_of_line_in_copy_mode
-    yank_to_clipboard
-    go_to_the_end_of_current_line
-    display_notice
+    if tmux-is-at-least 2.4; then
+        enter_tmux_copy_mode
+        tmux send -X select-line
+        yank_to_clipboard
+    else
+        go_to_the_beginning_of_current_line
+        add_sleep_for_remote_shells
+        enter_tmux_copy_mode
+        start_tmux_selection
+        end_of_line_in_copy_mode
+        yank_to_clipboard
+        go_to_the_end_of_current_line
+    fi
+    display_message 'Line copied to clipboard!'
 }
 
 main() {
