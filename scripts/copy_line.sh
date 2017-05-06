@@ -37,7 +37,7 @@ enter_tmux_copy_mode() {
 }
 
 start_tmux_selection() {
-    if tmux-is-at-least 2.4; then
+    if tmux_is_at_least 2.4; then
         echo "$TMUX_COPY_MODE" >> /tmp/tmux
         tmux send -X begin-selection
     elif [ "$TMUX_COPY_MODE" == "vi" ]; then
@@ -51,7 +51,7 @@ start_tmux_selection() {
 
 # works when command spans accross multiple lines
 end_of_line_in_copy_mode() {
-    if tmux-is-at-least 2.4; then
+    if tmux_is_at_least 2.4; then
         tmux send -X -N 150 'cursor-down'		# 'down' key. 'vi' mode is faster so we're
         # jumping more lines than emacs.
         tmux send -X 'end-of-line'		# End of line (just in case we are already at the last line).
@@ -78,7 +78,7 @@ end_of_line_in_copy_mode() {
 }
 
 yank_to_clipboard() {
-    if tmux-is-at-least 2.4; then
+    if tmux_is_at_least 2.4; then
         tmux send -X copy-pipe-and-cancel "$(clipboard_copy_command)"
     else
         tmux send-key "$(yank_wo_newline_key)"
@@ -94,7 +94,7 @@ go_to_the_end_of_current_line() {
 }
 
 yank_current_line() {
-    if tmux-is-at-least 2.4; then
+    if tmux_is_at_least 2.4; then
         enter_tmux_copy_mode
         tmux send -X select-line
         yank_to_clipboard

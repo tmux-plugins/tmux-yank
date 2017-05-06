@@ -16,7 +16,7 @@ set_error_bindings() {
     local key_bindings key
     key_bindings="$(yank_key) $(put_key) $(yank_put_key)"
     for key in $key_bindings; do
-        if tmux-is-at-least 2.4; then
+        if tmux_is_at_least 2.4; then
             tmux bind-key -t copy-mode-vi "$key" send-keys -X copy-pipe-and-cancel "tmux display-message 'Error! tmux-yank dependencies not installed!'"
             tmux bind-key -t copy-mode    "$key" send-keys -X copy-pipe-and-cancel "tmux display-message 'Error! tmux-yank dependencies not installed!'"
         else
@@ -40,7 +40,7 @@ set_copy_mode_bindings() {
     local copy_command="$1"
     local copy_wo_newline_command
     copy_wo_newline_command="$(clipboard_copy_without_newline_command "$copy_command")"
-    if tmux-is-at-least 2.4; then
+    if tmux_is_at_least 2.4; then
         tmux bind-key -T copy-mode-vi "$(yank_key)"            send-keys -X copy-pipe-and-cancel "$copy_command"
         tmux bind-key -T copy-mode-vi "$(put_key)"             send-keys -X copy-pipe-and-cancel "tmux paste-buffer"
         tmux bind-key -T copy-mode-vi "$(yank_put_key)"        send-keys -X copy-pipe-and-cancel "$copy_command; tmux paste-buffer"

@@ -132,7 +132,7 @@ clipboard_copy_command() {
 }
 
 tmux_version="$(tmux -V | cut -d ' ' -f 2)"
-tmux-is-at-least() {
+tmux_is_at_least() {
 if [[ $tmux_version == "$1" ]]
 then
     return 0
