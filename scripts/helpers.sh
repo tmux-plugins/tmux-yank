@@ -41,39 +41,39 @@ get_tmux_option() {
 }
 
 yank_line_key() {
-    echo "$(get_tmux_option "$yank_line_option" "$yank_line")"
+    get_tmux_option "$yank_line_option" "$yank_line"
 }
 
 yank_pane_pwd_key() {
-    echo "$(get_tmux_option "$yank_pane_pwd_option" "$yank_pane_pwd")"
+    get_tmux_option "$yank_pane_pwd_option" "$yank_pane_pwd"
 }
 
 yank_key() {
-    echo "$(get_tmux_option "$yank_option" "$yank_default")"
+    get_tmux_option "$yank_option" "$yank_default"
 }
 
 put_key() {
-    echo "$(get_tmux_option "$put_option" "$put_default")"
+    get_tmux_option "$put_option" "$put_default"
 }
 
 yank_put_key() {
-    echo "$(get_tmux_option "$yank_put_option" "$yank_put_default")"
+    get_tmux_option "$yank_put_option" "$yank_put_default"
 }
 
 yank_wo_newline_key() {
-    echo "$(get_tmux_option "$yank_wo_newline_option" "$yank_wo_newline_default")"
+    get_tmux_option "$yank_wo_newline_option" "$yank_wo_newline_default"
 }
 
 yank_selection() {
-    echo "$(get_tmux_option "$yank_selection_option" "$yank_selection_default")"
+    get_tmux_option "$yank_selection_option" "$yank_selection_default"
 }
 
 shell_mode() {
-    echo "$(get_tmux_option "$shell_mode_option" "$shell_mode_default")"
+    get_tmux_option "$shell_mode_option" "$shell_mode_default"
 }
 
 custom_copy_command() {
-    echo "$(get_tmux_option "$custom_copy_command_option" "$custom_copy_command_default")"
+    get_tmux_option "$custom_copy_command_option" "$custom_copy_command_default"
 }
 # Ensures a message is displayed for 5 seconds in tmux prompt.
 # Does not override the 'display-time' tmux option.
@@ -133,7 +133,7 @@ clipboard_copy_command() {
 
 tmux_version="$(tmux -V | cut -d ' ' -f 2)"
 tmux-is-at-least() {
-if [[ $tmux_version == $1 ]]
+if [[ $tmux_version == "$1" ]]
 then
     return 0
 fi
