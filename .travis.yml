@@ -1,9 +1,10 @@
 sudo: false
-language: perl
 
-before_install:
-  - sudo apt-get -qq update
-  - sudo apt-get install -y shellcheck bash
+addons:
+  apt:
+    packages:
+    - shellcheck
+    - bash
 
 script:
   - ./citest
