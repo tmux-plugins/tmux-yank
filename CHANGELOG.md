@@ -11,6 +11,7 @@ Change Log
 -   "copy pane current directory" feature (@bruno-)
 -   `yank_line` and `yank_pane_pwd` fork to prevent xclip from hanging Tmux
     (@leoalekseyev)
+*   `yank_line` no longer cares if you use emacs or vi in copy-mode.
 
 [v2.2.0] 2015-10-12
 -------------------
