@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -euo pipefail
+
+bash_scripts=(
+yank.tmux
+scripts/*.sh
+)
+
+bash -Dn "${bash_scripts[@]}"
+
+shellcheck \
+  --shell=bash \
+  --external-sources \
+  --color=always \
+  "${bash_scripts[@]}"
+
+# EOF

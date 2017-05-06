@@ -1,0 +1,14 @@
+sudo: false
+language: perl
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y shellcheck bash
+
+script:
+  - ./citest
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
