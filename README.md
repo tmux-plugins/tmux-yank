@@ -1,3 +1,10 @@
+[![Build
+Status](https://travis-ci.org/tmux-plugins/tmux-yank.svg?branch=master)](https://travis-ci.org/tmux-plugins/tmux-yank)
+[![GitHub
+release](https://img.shields.io/github/release/tmux-plugins/tmux-yank.svg)](https://github.com/tmux-plugins/tmux-yank/releases)
+[![GitHub
+issues](https://img.shields.io/github/issues/tmux-plugins/tmux-yank.svg)](https://github.com/tmux-plugins/tmux-yank/issues)
+
 tmux-yank
 =========
 
