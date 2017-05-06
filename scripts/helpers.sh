@@ -127,7 +127,7 @@ clipboard_copy_command() {
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"
     elif [ -n "$(custom_copy_command)" ]; then
-        echo "$(custom_copy_command)"
+        custom_copy_command
     fi
 }
 
