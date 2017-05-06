@@ -3,7 +3,8 @@
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HELPERS_DIR="$CURRENT_DIR"
 
-source "$HELPERS_DIR/helpers.sh"
+# shellcheck source=scripts/helpers.sh
+source "${HELPERS_DIR}/helpers.sh"
 
 pane_current_path() {
     tmux display -p -F "#{pane_current_path}"

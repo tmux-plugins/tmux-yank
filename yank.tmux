@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-SCRIPTS_DIR="$CURRENT_DIR/scripts"
-HELPERS_DIR="$CURRENT_DIR/scripts"
+SCRIPTS_DIR="${CURRENT_DIR}/scripts"
+HELPERS_DIR="${CURRENT_DIR}/scripts"
 
-source "$HELPERS_DIR/helpers.sh"
+# shellcheck source=scripts/helpers.sh
+source "${HELPERS_DIR}/helpers.sh"
 
 clipboard_copy_without_newline_command() {
     local copy_command="$1"
-    echo "tr -d '\n' | $copy_command"
+    printf "tr -d '\\n' | %s" "$copy_command"
 }
 
 set_error_bindings() {
-    local key_bindings="$(yank_key) $(put_key) $(yank_put_key)"
-    local key
+    local key_bindings key
+    key_bindings="$(yank_key) $(put_key) $(yank_put_key)"
     for key in $key_bindings; do
         if tmux-is-at-least 2.4; then
             tmux bind-key -t copy-mode-vi "$key" send-keys -X copy-pipe-and-cancel "tmux display-message 'Error! tmux-yank dependencies not installed!'"
@@ -37,7 +38,8 @@ error_handling_if_command_not_present() {
 # a helper for `copy_line` command.
 set_copy_mode_bindings() {
     local copy_command="$1"
-    local copy_wo_newline_command="$(clipboard_copy_without_newline_command "$copy_command")"
+    local copy_wo_newline_command
+    copy_wo_newline_command="$(clipboard_copy_without_newline_command "$copy_command")"
     if tmux-is-at-least 2.4; then
         tmux bind-key -T copy-mode-vi "$(yank_key)"            send-keys -X copy-pipe-and-cancel "$copy_command"
         tmux bind-key -T copy-mode-vi "$(put_key)"             send-keys -X copy-pipe-and-cancel "tmux paste-buffer"
@@ -67,7 +69,8 @@ set_normal_bindings() {
 }
 
 main() {
-    local copy_command="$(clipboard_copy_command)"
+    local copy_command
+    copy_command="$(clipboard_copy_command)"
     error_handling_if_command_not_present "$copy_command"
     set_copy_mode_bindings "$copy_command"
     set_normal_bindings
