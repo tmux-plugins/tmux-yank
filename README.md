@@ -68,8 +68,25 @@ the system clipboard.
 
 -   [`reattach-to-user-namespace`](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
 
-**Note**: Beginning with OSX Yosemite (10.10), `pbcopy` is reported to work
-correctly with `tmux` without `reattach-to-user-namespace`.
+**Note**: Some versions of macOS (aka OS X) have been reported to work
+without `reattach-to-user-namespace`. It doesn't hurt to have it installed.
+
+-   OS X 10.8: Mountain Lion – *required*
+-   OS X 10.9: Mavericks – *required*
+-   OS X 10.10: Yosemite – *not required*
+-   OS X 10.11: El Capitan – *not required*
+-   macOS 10.12: Sierra – *required*
+
+The easiest way to use `reattach-to-user-namespace` with `tmux` is use to
+use the [`tmux-sensible`](https://github.com/tmux-plugins/tmux-sensible)
+plugin.
+
+To use it manually, use:
+
+``` tmux
+# ~/.tmux.conf
+set-option -g default-command "reattach-to-user-namespace -l $SHELL"
+```
 
 If you have `tmux` 1.5 or newer and are using
 [iTerm2](https://www.iterm2.com/) version 3 or newer then the <kbd>y</kbd>
