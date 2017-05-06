@@ -6,7 +6,6 @@ addons:
     sources:
       - debian-sid # Grab ShellCheck from the Debian repo
     packages:
-      - bash
       - shellcheck
 
 script:
