@@ -61,6 +61,25 @@ the system clipboard.
 
 -   [`reattach-to-user-namespace`](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
 
+**Note**: Beginning with OSX Yosemite (10.10), `pbcopy` is reported to work
+correctly with `tmux` without `reattach-to-user-namespace`.
+
+If you have `tmux` 1.5 or newer and are using
+[iTerm2](https://www.iterm2.com/) version 3 or newer then the <kbd>y</kbd>
+in `copy-mode` and mouse selection will work without `tmux-yank`.
+
+To enable this:
+
+1.  Go into iTerm2's preferences.
+2.  Go to the "General" tab.
+3.  Check "Applications in terminal may access clipboard"
+4.  In `tmux`, ensure `set-clipboard` is turned on:
+
+    ``` sh
+    $ tmux show-options -g -s set-clipboard
+    set-clipboard on
+    ```
+
 #### [HomeBrew](https://brew.sh/) (recommended)
 
 ``` sh
@@ -73,12 +92,13 @@ $ brew install reattach-to-user-namespace
 $ sudo port install tmux-pasteboard
 ```
 
-**Note**: Beginning with OSX Yosemite (10.10), `pbcopy` is reported to work
-correctly with `tmux` without `reattach-to-user-namespace`.
-
 ### Linux
 
 -   `xsel` (recommended) or `xclip`.
+
+If you have `tmux` 1.5 or newer and are using `xterm`, the <kbd>y</kbd> in
+`copy-mode` and mouse selection will work without `tmux-yank`. See the
+`tmux(1)` man page entry for the `set-clipboard` option.
 
 #### Debian & Ubuntu
 
