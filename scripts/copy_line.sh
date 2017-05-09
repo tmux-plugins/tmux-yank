@@ -38,7 +38,6 @@ enter_tmux_copy_mode() {
 
 start_tmux_selection() {
     if tmux_is_at_least 2.4; then
-        echo "$TMUX_COPY_MODE" >> /tmp/tmux
         tmux send -X begin-selection
     elif [ "$TMUX_COPY_MODE" == "vi" ]; then
         # vi copy mode
@@ -94,19 +93,13 @@ go_to_the_end_of_current_line() {
 }
 
 yank_current_line() {
-    if tmux_is_at_least 2.4; then
-        enter_tmux_copy_mode
-        tmux send -X select-line
-        yank_to_clipboard
-    else
-        go_to_the_beginning_of_current_line
-        add_sleep_for_remote_shells
-        enter_tmux_copy_mode
-        start_tmux_selection
-        end_of_line_in_copy_mode
-        yank_to_clipboard
-        go_to_the_end_of_current_line
-    fi
+    go_to_the_beginning_of_current_line
+    add_sleep_for_remote_shells
+    enter_tmux_copy_mode
+    start_tmux_selection
+    end_of_line_in_copy_mode
+    yank_to_clipboard
+    go_to_the_end_of_current_line
     display_message 'Line copied to clipboard!'
 }
 
