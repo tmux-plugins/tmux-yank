@@ -135,7 +135,7 @@ clipboard_copy_command() {
 tmux_version="$(tmux -V | cut -d ' ' -f 2)"
 
 tmux_is_at_least() {
-    if [[ $tmux_version == "$1" ]]
+    if [[ $tmux_version == "$1" || $tmux_version == "master" ]]
     then
         return 0
     fi
