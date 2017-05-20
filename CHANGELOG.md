@@ -9,9 +9,12 @@ Change Log
 -   Tmux 2.4 support (@docwhat, @edi9999)
 -   Windows Subsystem for Linux (WSL) support via `clip.exe` (@lukewang1024)
 -   "copy pane current directory" feature (@bruno-)
--   `yank_line` and `yank_pane_pwd` fork to prevent xclip from hanging Tmux
-    (@leoalekseyev)
+-   `yank_line` and `yank_pane_pwd` fork to prevent xclip from hanging Tmux (@leoalekseyev)
 *   `yank_line` no longer cares if you use emacs or vi in copy-mode.
+
+### Fixed
+
+-   Detect git builds of tmux version ≥ 2.4 (@maximbaz PR#89)
 
 [v2.2.0] 2015-10-12
 -------------------
