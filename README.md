@@ -174,7 +174,7 @@ Configuration
 ### Linux Clipboards
 
 Linux has several cut-and-paste clipboards: `primary`, `secondary`, and
-`clipboard`.
+`clipboard` (default in tmux-yank is `clipboard`).
 
 You can change this by setting `@yank_selection`:
 
