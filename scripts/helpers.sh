@@ -108,7 +108,9 @@ command_exists() {
 
 clipboard_copy_command() {
     # installing reattach-to-user-namespace is recommended on OS X
-    if command_exists "pbcopy"; then
+    if [ -n "$(custom_copy_command)" ]; then
+        custom_copy_command
+    elif command_exists "pbcopy"; then
         if command_exists "reattach-to-user-namespace"; then
             echo "reattach-to-user-namespace pbcopy"
         else
@@ -126,8 +128,6 @@ clipboard_copy_command() {
         echo "xsel -i --$xsel_selection"
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"
-    elif [ -n "$(custom_copy_command)" ]; then
-        custom_copy_command
     fi
 }
 
