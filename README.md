@@ -171,6 +171,31 @@ Configuration
     -   <kbd>Y</kbd> (shift-y) — "put" selection. Equivalent to copying a
         selection, and pasting it to the command line.
 
+
+### Default and Preferred Clipboard Programs
+
+tmux-yank does its best to detect a reasonable choice for a clipboard
+program on your OS.
+
+If tmux-yank can't detect a known clipboard program then it uses the
+`@custom_copy_command` tmux option as your clipboard program if set.
+
+If you need to always override tmux-yank's choice for a clipboard program,
+then you can set `@override_copy_command` to force tmux-yank to use whatever
+you want.
+
+Note that both programs _must_ accept `STDIN` for the text to be copied.
+
+An example of setting `@override_copy_command`:
+
+``` tmux
+# ~/.tmux.conf
+
+set -g @custom_copy_command 'my-clipboard-copy --some-arg'
+# or
+set -g @override_copy_command 'my-clipboard-copy --some-arg'
+```
+
 ### Linux Clipboards
 
 Linux has several cut-and-paste clipboards: `primary`, `secondary`, and

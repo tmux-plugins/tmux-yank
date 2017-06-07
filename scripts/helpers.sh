@@ -27,6 +27,9 @@ shell_mode_option="@shell_mode"
 custom_copy_command_default=""
 custom_copy_command_option="@custom_copy_command"
 
+override_copy_command_default=""
+override_copy_command_option="@override_copy_command"
+
 # helper functions
 get_tmux_option() {
     local option="$1"
@@ -75,6 +78,10 @@ shell_mode() {
 custom_copy_command() {
     get_tmux_option "$custom_copy_command_option" "$custom_copy_command_default"
 }
+
+override_copy_command() {
+    get_tmux_option "$override_copy_command_option" "$override_copy_command_default"
+}
 # Ensures a message is displayed for 5 seconds in tmux prompt.
 # Does not override the 'display-time' tmux option.
 display_message() {
@@ -108,7 +115,9 @@ command_exists() {
 
 clipboard_copy_command() {
     # installing reattach-to-user-namespace is recommended on OS X
-    if command_exists "pbcopy"; then
+    if [ -n "$(override_copy_command)" ]; then
+        override_copy_command
+    elif command_exists "pbcopy"; then
         if command_exists "reattach-to-user-namespace"; then
             echo "reattach-to-user-namespace pbcopy"
         else
