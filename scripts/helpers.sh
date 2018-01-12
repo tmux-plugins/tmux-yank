@@ -21,7 +21,7 @@ yank_wo_newline_option="@copy_mode_yank_wo_newline"
 yank_selection_default="clipboard"
 yank_selection_option="@yank_selection"
 
-yank_action_default="copy-pipe"
+yank_action_default="copy-pipe-and-cancel"
 yank_action_option="@yank_action"
 
 shell_mode_default="emacs"
