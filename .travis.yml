@@ -1,17 +1,19 @@
 sudo: false
 language: bash
-
 addons:
   apt:
     sources:
-      - debian-sid # Grab ShellCheck from the Debian repo
+    - debian-sid
     packages:
-      - shellcheck
-
+    - shellcheck
 script:
-  - ./citest
-
+- "./citest"
 notifications:
-  email:
-    on_success: never
-    on_failure: change
+  email: false
+  pushover:
+    on_success: change
+    on_failure: always
+    api_key:
+      secure: gWoqAqGyBbO6mcKbHkt29jJZ7ElOfct2C5WPfliBARl8ImCE0HE6CEGdK25i29mjfIxXWp3HITsRawuauZDN8nCZ9srO+0wr7OWAcZuhDW6mDmKNLX2y4eR4lK21MsMpLIHqA48hYXkHVKSHR7TDG88A/0MRXoTb5gcuPDJMqPk=
+    users:
+      secure: dIUBBbi8R7cOcwBQ8guLsq+M8vBXcSAu9vKUVEqToSHoWap4fTl4QSZpyhzxLy6uSNRwg1u20xVSlEAPee2Z+efzZQtA0I9bRTkcAMbzH65+sWKgMsEMJoHrqlCr7FvX4c+UMW9sWlRLoH52oN3ilCQNy2beI8mWqE4gAGxD4aA=
