@@ -24,6 +24,9 @@ yank_selection_option="@yank_selection"
 yank_selection_mouse_default="primary"
 yank_selection_mouse_option="@yank_selection_mouse"
 
+yank_with_mouse_default="on"
+yank_with_mouse_option="@yank_with_mouse"
+
 yank_action_default="copy-pipe-and-cancel"
 yank_action_option="@yank_action"
 
@@ -79,6 +82,10 @@ yank_selection() {
 
 yank_selection_mouse() {
     get_tmux_option "$yank_selection_mouse_option" "$yank_selection_mouse_default"
+}
+
+yank_with_mouse() {
+    get_tmux_option "$yank_with_mouse_option" "$yank_with_mouse_default"
 }
 
 yank_action() {
