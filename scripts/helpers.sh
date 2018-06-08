@@ -135,7 +135,7 @@ command_exists() {
 }
 
 clipboard_copy_command() {
-    local mouse="$1"
+    local mouse="${1:-false}"
     # installing reattach-to-user-namespace is recommended on OS X
     if [ -n "$(override_copy_command)" ]; then
         override_copy_command
