@@ -4,6 +4,11 @@ Change Log
 [master]
 --------
 
+### Added
+
+-   Mouse support, controlled by `yank_with_mouse` and `yank_selection_mouse`
+    (@keidax)
+
 [v2.3.0] 2018-02-01
 -------------------
 

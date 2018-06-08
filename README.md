@@ -209,13 +209,33 @@ You can change this by setting `@yank_selection`:
 set -g @yank_selection 'primary' # or 'secondary' or 'clipboard'
 ```
 
+With mouse support turned on (see below) the default clipboard for mouse
+selections is `primary`.
+
+You can change this by setting `@yank_selection_mouse`:
+
+``` tmux
+# ~/.tmux.conf
+
+set -g @yank_selection_mouse 'clipboard' # or 'primary' or 'secondary'
+```
 ### Mouse Support
 
-When making a selection using `tmux` with `mode-mouse on` or
-`mode-mouse copy-mode`, you cannot rely on the default 'release mouse after
-selection to copy' behavior.
+`tmux-yank` has mouse support enabled by default. It will only work if `tmux`'s
+built-in mouse support is also enabled (with `mouse on` since `tmux` 2.1, or
+`mode-mouse on` in older versions).
 
-Instead, press <kbd>y</kbd> before releasing mouse.
+To yank with the mouse, click and drag with the primary button to begin
+selection, and release to yank.
+
+If you would prefer to disable this behavior, or provide your own bindings for
+the `MouseDragEnd1Pane` event, you can do so with:
+
+``` tmux
+# ~/.tmux.conf
+
+set -g @yank_with_mouse off # or 'on'
+```
 
 ### vi mode support
 
