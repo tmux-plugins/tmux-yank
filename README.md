@@ -219,6 +219,18 @@ You can change this by setting `@yank_selection_mouse`:
 
 set -g @yank_selection_mouse 'clipboard' # or 'primary' or 'secondary'
 ```
+
+### Controlling Yank Behavior
+
+By default, `tmux-yank` will exit copy mode after yanking text. If you wish to
+remain in copy mode, you can set `@yank_action`:
+
+``` tmux
+# ~/.tmux.conf
+
+set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
+```
+
 ### Mouse Support
 
 `tmux-yank` has mouse support enabled by default. It will only work if `tmux`'s
@@ -236,6 +248,9 @@ the `MouseDragEnd1Pane` event, you can do so with:
 
 set -g @yank_with_mouse off # or 'on'
 ```
+
+If you want to remain in copy mode after making a mouse selection, set
+`@yank_action` as described above.
 
 ### vi mode support
 
