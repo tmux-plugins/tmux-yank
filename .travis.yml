@@ -1,13 +1,11 @@
-sudo: false
+sudo: required
 language: bash
-addons:
-  apt:
-    sources:
-    - debian-sid
-    packages:
-    - shellcheck
+services:
+  - docker
+
 script:
 - "./citest"
+
 notifications:
   email: false
   pushover:

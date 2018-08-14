@@ -2,14 +2,26 @@
 
 set -euo pipefail
 
+cd "$(dirname "$0")"
+
 bash_scripts=(
 yank.tmux
 scripts/*.sh
 )
 
-bash -Dn "${bash_scripts[@]}"
+set -x
+docker run \
+  --rm \
+  --volume="${PWD}:/mnt:ro" \
+  --workdir="/mnt" \
+  bash:latest \
+  bash -Dn "${bash_scripts[@]}"
 
-shellcheck \
+docker run \
+  --rm \
+  --volume="${PWD}:/mnt:ro" \
+  --workdir="/mnt" \
+  koalaman/shellcheck:stable \
   --shell=bash \
   --external-sources \
   --color=always \
