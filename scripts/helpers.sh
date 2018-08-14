@@ -156,8 +156,10 @@ tmux_is_at_least() {
         return 0
     fi
 
-    local IFS=.
-    local i tver=($tmux_version) wver=($1)
+    local IFS=. i
+    local -a tver wver
+    tver=( "$tmux_version" )
+    wver=( "$1" )
 
     # fill empty fields in tver with zeros
     for ((i=${#tver[@]}; i<${#wver[@]}; i++)); do
