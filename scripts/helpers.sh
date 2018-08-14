@@ -132,14 +132,14 @@ clipboard_copy_command() {
         fi
     elif command_exists "clip.exe"; then # WSL clipboard command
         echo "clip.exe"
-    elif command_exists "xclip"; then
-        local xclip_selection
-        xclip_selection="$(yank_selection)"
-        echo "xclip -selection $xclip_selection"
     elif command_exists "xsel"; then
         local xsel_selection
         xsel_selection="$(yank_selection)"
         echo "xsel -i --$xsel_selection"
+    elif command_exists "xclip"; then
+        local xclip_selection
+        xclip_selection="$(yank_selection)"
+        echo "xclip -selection $xclip_selection"
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"
     elif [ -n "$(custom_copy_command)" ]; then
