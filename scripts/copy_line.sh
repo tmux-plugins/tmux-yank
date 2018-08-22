@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HELPERS_DIR="$CURRENT_DIR"
 TMUX_COPY_MODE=""
 
@@ -19,7 +19,7 @@ get_tmux_copy_mode() {
 add_sleep_for_remote_shells() {
     local pane_command
     pane_command="$(tmux display-message -p '#{pane_current_command}')"
-    if [[ "$pane_command" =~ (ssh|mosh) ]]; then
+    if [[ $pane_command =~ (ssh|mosh) ]]; then
         sleep "$REMOTE_SHELL_WAIT_TIME"
     fi
 }
@@ -51,23 +51,23 @@ start_tmux_selection() {
 # works when command spans accross multiple lines
 end_of_line_in_copy_mode() {
     if tmux_is_at_least 2.4; then
-        tmux send -X -N 150 'cursor-down'		# 'down' key. 'vi' mode is faster so we're
+        tmux send -X -N 150 'cursor-down' # 'down' key. 'vi' mode is faster so we're
         # jumping more lines than emacs.
-        tmux send -X 'end-of-line'		# End of line (just in case we are already at the last line).
-        tmux send -X 'previous-word'		# Beginning of the previous word.
-        tmux send -X 'next-word-end'		# End of next word.
+        tmux send -X 'end-of-line'   # End of line (just in case we are already at the last line).
+        tmux send -X 'previous-word' # Beginning of the previous word.
+        tmux send -X 'next-word-end' # End of next word.
     elif [ "$TMUX_COPY_MODE" == "vi" ]; then
         # vi copy mode
         # This sequence of keys consistently selects multiple lines
-        tmux send-key '150'		# Go to the bottom of scrollback buffer by using
-        tmux send-key 'j'		# 'down' key. 'vi' mode is faster so we're
+        tmux send-key '150' # Go to the bottom of scrollback buffer by using
+        tmux send-key 'j'   # 'down' key. 'vi' mode is faster so we're
         # jumping more lines than emacs.
-        tmux send-key '$'		# End of line (just in case we are already at the last line).
-        tmux send-key 'b'		# Beginning of the previous word.
-        tmux send-key 'e'		# End of next word.
+        tmux send-key '$' # End of line (just in case we are already at the last line).
+        tmux send-key 'b' # Beginning of the previous word.
+        tmux send-key 'e' # End of next word.
     else
         # emacs copy mode
-        for (( c=1; c<='30'; c++ )); do		# go to the bottom of scrollback buffer
+        for ((c = 1; c <= '30'; c++)); do # go to the bottom of scrollback buffer
             tmux send-key 'C-n'
         done
         tmux send-key 'C-e'

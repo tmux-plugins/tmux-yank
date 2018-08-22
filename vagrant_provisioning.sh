@@ -10,4 +10,4 @@ sudo apt-get update
 sudo apt-get install -y tmux=1.9a-1~ppa1~p
 
 # configure X11 for xclip testing
-echo "export DISPLAY='IP:0.0'" >> /home/vagrant/.bashrc
+echo "export DISPLAY='IP:0.0'" >>/home/vagrant/.bashrc
