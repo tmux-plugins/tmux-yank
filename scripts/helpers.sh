@@ -151,28 +151,27 @@ clipboard_copy_command() {
 tmux_version="$(tmux -V | cut -d ' ' -f 2)"
 
 tmux_is_at_least() {
-    if [[ $tmux_version == "$1" || $tmux_version == "master" ]]
-    then
+    if [[ $tmux_version == "$1" ]] || [[ $tmux_version == master ]]; then
         return 0
     fi
 
-    local IFS=. i
-    local -a tver wver
-    tver=( "$tmux_version" )
-    wver=( "$1" )
+    local i
+    local -a current_version wanted_version
+    IFS='.' read -ra current_version <<<"$tmux_version"
+    IFS='.' read -ra wanted_version <<<"$1"
 
-    # fill empty fields in tver with zeros
-    for ((i=${#tver[@]}; i<${#wver[@]}; i++)); do
-        tver[i]=0
+    # fill empty fields in current_version with zeros
+    for ((i = ${#current_version[@]}; i < ${#wanted_version[@]}; i++)); do
+        current_version[i]=0
     done
 
-    # fill empty fields in wver with zeros
-    for ((i=${#wver[@]}; i<${#tver[@]}; i++)); do
-        wver[i]=0
+    # fill empty fields in wanted_version with zeros
+    for ((i = ${#wanted_version[@]}; i < ${#current_version[@]}; i++)); do
+        wanted_version[i]=0
     done
 
-    for ((i=0; i<${#tver[@]}; i++)); do
-        if ((10#${tver[i]} < 10#${wver[i]})); then
+    for ((i = 0; i < ${#current_version[@]}; i++)); do
+        if ((10#${current_version[i]} < 10#${wanted_version[i]})); then
             return 1
         fi
     done
