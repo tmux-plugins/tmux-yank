@@ -21,6 +21,12 @@ yank_wo_newline_option="@copy_mode_yank_wo_newline"
 yank_selection_default="clipboard"
 yank_selection_option="@yank_selection"
 
+yank_selection_mouse_default="primary"
+yank_selection_mouse_option="@yank_selection_mouse"
+
+yank_with_mouse_default="on"
+yank_with_mouse_option="@yank_with_mouse"
+
 yank_action_default="copy-pipe-and-cancel"
 yank_action_option="@yank_action"
 
@@ -74,6 +80,14 @@ yank_selection() {
     get_tmux_option "$yank_selection_option" "$yank_selection_default"
 }
 
+yank_selection_mouse() {
+    get_tmux_option "$yank_selection_mouse_option" "$yank_selection_mouse_default"
+}
+
+yank_with_mouse() {
+    get_tmux_option "$yank_with_mouse_option" "$yank_with_mouse_default"
+}
+
 yank_action() {
     get_tmux_option "$yank_action_option" "$yank_action_default"
 }
@@ -121,6 +135,7 @@ command_exists() {
 }
 
 clipboard_copy_command() {
+    local mouse="${1:-false}"
     # installing reattach-to-user-namespace is recommended on OS X
     if [ -n "$(override_copy_command)" ]; then
         override_copy_command
@@ -134,11 +149,19 @@ clipboard_copy_command() {
         echo "clip.exe"
     elif command_exists "xsel"; then
         local xsel_selection
-        xsel_selection="$(yank_selection)"
+        if [[ $mouse == "true" ]]; then
+            xsel_selection="$(yank_selection_mouse)"
+        else
+            xsel_selection="$(yank_selection)"
+        fi
         echo "xsel -i --$xsel_selection"
     elif command_exists "xclip"; then
         local xclip_selection
-        xclip_selection="$(yank_selection)"
+        if [[ $mouse == "true" ]]; then
+            xclip_selection="$(yank_selection_mouse)"
+        else
+            xclip_selection="$(yank_selection)"
+        fi
         echo "xclip -selection $xclip_selection"
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"
