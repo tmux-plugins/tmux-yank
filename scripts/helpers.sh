@@ -30,6 +30,9 @@ yank_with_mouse_option="@yank_with_mouse"
 yank_action_default="copy-pipe-and-cancel"
 yank_action_option="@yank_action"
 
+yank_mouse_action_default="copy-pipe-and-cancel"
+yank_mouse_action_option="@yank_mouse_action"
+
 shell_mode_default="emacs"
 shell_mode_option="@shell_mode"
 
@@ -90,6 +93,10 @@ yank_with_mouse() {
 
 yank_action() {
     get_tmux_option "$yank_action_option" "$yank_action_default"
+}
+
+yank_mouse_action() {
+    get_tmux_option "$yank_mouse_action_option" "$yank_mouse_action_default"
 }
 
 shell_mode() {
