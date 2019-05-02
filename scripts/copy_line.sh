@@ -78,6 +78,7 @@ end_of_line_in_copy_mode() {
 
 yank_to_clipboard() {
     if tmux_is_at_least 2.4; then
+        # shellcheck disable=SC2119
         tmux send -X copy-pipe-and-cancel "$(clipboard_copy_command)"
     else
         tmux send-key "$(yank_wo_newline_key)"

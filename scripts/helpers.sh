@@ -1,4 +1,5 @@
 #!bash
+# shellcheck disable=SC2239
 
 yank_line="y"
 yank_line_option="@yank_line"
