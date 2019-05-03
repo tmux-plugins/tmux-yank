@@ -148,7 +148,7 @@ clipboard_copy_command() {
         fi
     elif command_exists "clip.exe"; then # WSL clipboard command
         echo "clip.exe"
-    elif command_exists "xsel"; then
+    elif [ -n "$DISPLAY" ] && command_exists "xsel"; then
         local xsel_selection
         if [[ $mouse == "true" ]]; then
             xsel_selection="$(yank_selection_mouse)"
@@ -156,7 +156,7 @@ clipboard_copy_command() {
             xsel_selection="$(yank_selection)"
         fi
         echo "xsel -i --$xsel_selection"
-    elif command_exists "xclip"; then
+    elif [ -n "$DISPLAY" ] && command_exists "xclip"; then
         local xclip_selection
         if [[ $mouse == "true" ]]; then
             xclip_selection="$(yank_selection_mouse)"
@@ -164,6 +164,8 @@ clipboard_copy_command() {
             xclip_selection="$(yank_selection)"
         fi
         echo "xclip -selection $xclip_selection"
+    elif command_exists "wl-copy"; then
+        echo "wl-copy"
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"
     elif [ -n "$(custom_copy_command)" ]; then
