@@ -118,7 +118,8 @@ $ sudo port install tmux-pasteboard
 
 ### Linux
 
--   `xsel` (recommended) or `xclip`.
+-   `xsel` (recommended) or `xclip` (for X).
+-   `wl-copy` from [wl-clipboard](https://github.com/bugaevc/wl-clipboard) (for Wayland)
 
 If you have `tmux` 1.5 or newer and are using `xterm`, the <kbd>y</kbd> in
 `copy-mode` and mouse selection will work without `tmux-yank`. See the
