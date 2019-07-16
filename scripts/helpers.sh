@@ -147,7 +147,7 @@ clipboard_copy_command() {
             echo "pbcopy"
         fi
     elif command_exists "clip.exe"; then # WSL clipboard command
-        echo "clip.exe"
+        echo "cat | clip.exe"
     elif command_exists "wl-copy"; then # wl-clipboard: Wayland clipboard utilities
         echo "wl-copy"
     elif command_exists "xsel"; then
