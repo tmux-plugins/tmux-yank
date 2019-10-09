@@ -76,6 +76,8 @@ without `reattach-to-user-namespace`. It doesn't hurt to have it installed.
 -   OS X 10.10: Yosemite – *not required*
 -   OS X 10.11: El Capitan – *not required*
 -   macOS 10.12: Sierra – *required*
+-   macOS 10.14: Mojave - *required*
+-   macOS 10.15: Catalina - *not required*
 
 The easiest way to use `reattach-to-user-namespace` with `tmux` is use to
 use the [`tmux-sensible`](https://github.com/tmux-plugins/tmux-sensible)
