@@ -200,6 +200,9 @@ tmux_is_at_least() {
         if ((10#${current_version[i]} < 10#${wanted_version[i]})); then
             return 1
         fi
+        if ((10#${current_version[i]} > 10#${wanted_version[i]})); then
+            return 0
+        fi
     done
     return 0
 }
