@@ -14,12 +14,21 @@ display_notice() {
     display_message 'PWD copied to clipboard!'
 }
 
+command_exists() {
+    local command="$1"
+    type "$command" >/dev/null 2>&1
+}
+
 main() {
     local copy_command
     # shellcheck disable=SC2119
     copy_command="$(clipboard_copy_command)"
     # $copy_command below should not be quoted
-    pane_current_path | tr -d '\n' | $copy_command
+    if command_exists "clip.exe"; then # WSL clipboard command
+        pane_current_path | tr -d '\n' | clip.exe
+    else
+        pane_current_path | tr -d '\n' | $copy_command
+    fi
     display_notice
 }
 main
