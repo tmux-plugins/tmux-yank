@@ -19,7 +19,11 @@ main() {
     # shellcheck disable=SC2119
     copy_command="$(clipboard_copy_command)"
     # $copy_command below should not be quoted
-    pane_current_path | tr -d '\n' | $copy_command
+    if type "clip.exe" >/dev/null 2>&1; then # WSL clipboard command
+        pane_current_path | tr -d '\n' | clip.exe
+    else
+        pane_current_path | tr -d '\n' | $copy_command
+    fi
     display_notice
 }
 main
