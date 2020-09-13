@@ -15,11 +15,13 @@ display_notice() {
 }
 
 main() {
-    local copy_command
+    local copy_command payload
     # shellcheck disable=SC2119
     copy_command="$(clipboard_copy_command)"
+    payload="$(pane_current_path)"
     # $copy_command below should not be quoted
-    pane_current_path | tr -d '\n' | $copy_command
+    echo "$payload" | tr -d '\n' | $copy_command
+    tmux set-buffer "$payload"
     display_notice
 }
 main
