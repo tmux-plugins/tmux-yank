@@ -4,11 +4,7 @@ CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="${CURRENT_DIR}/scripts"
 HELPERS_DIR="${CURRENT_DIR}/scripts"
 
-# Try to find the executable path of the currently running
-# tmux server, fallback to just "tmux" if not found or no
-# procfs aviliable (non-linux).
-export TMUX_CMD_PATH=$(realpath "/proc/$(tmux display -p '#{pid}')/exe" 2> /dev/null || echo "tmux" | sed -z '$ s/\n$//')
-echo "tmux executable used: $TMUX_CMD_PATH"
+source "$SCRIPTS_DIR/tmux_cmd_path.sh"
 
 # shellcheck source=scripts/helpers.sh
 source "${HELPERS_DIR}/helpers.sh"

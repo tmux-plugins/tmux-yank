@@ -1,7 +1,9 @@
 #!bash
 # shellcheck disable=SC2239
 
-export TMUX_CMD_PATH=$(realpath "/proc/$(tmux display -p '#{pid}')/exe" 2> /dev/null || echo "tmux" | sed -z '$ s/\n$//')
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source "$CURRENT_DIR/tmux_cmd_path.sh"
 
 yank_line="y"
 yank_line_option="@yank_line"

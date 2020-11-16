@@ -3,7 +3,7 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HELPERS_DIR="$CURRENT_DIR"
 
-export TMUX_CMD_PATH=$(realpath "/proc/$(tmux display -p '#{pid}')/exe" 2> /dev/null || echo "tmux" | sed -z '$ s/\n$//')
+source "$CURRENT_DIR/tmux_cmd_path.sh"
 
 # shellcheck source=scripts/helpers.sh
 source "${HELPERS_DIR}/helpers.sh"
