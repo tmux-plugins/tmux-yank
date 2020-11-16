@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Written by michaellee8 <ckmichael8@gmail.com> in Nov 2020 for 
-# https://github.com/tmux-plugins/tpm/issues/189 to prevent problems caused by 
-# tmux version mismatch between client and server. This script is 
+# Written by michaellee8 <ckmichael8@gmail.com> in Nov 2020 for
+# https://github.com/tmux-plugins/tpm/issues/189 to prevent problems caused by
+# tmux version mismatch between client and server. This script is
 # licensed in public domain.
 
-# Try to get the process ID of the running tmux server, 
+# Try to get the process ID of the running tmux server,
 # would be empty if not found
+# shellcheck disable=SC2009
 TMUX_SERVER_PID=$(ps -eo pid=,comm= | grep 'tmux: server' | awk '{ print $1; }')
 
 if [[ -n "$TMUX_SERVER_PID" ]]; then
