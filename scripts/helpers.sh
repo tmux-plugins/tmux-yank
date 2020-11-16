@@ -1,6 +1,11 @@
 #!bash
 # shellcheck disable=SC2239
 
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# shellcheck source=scripts/tmux_cmd_path.sh
+source "$CURRENT_DIR/tmux_cmd_path.sh"
+
 yank_line="y"
 yank_line_option="@yank_line"
 
@@ -45,7 +50,7 @@ get_tmux_option() {
     local option="$1"
     local default_value="$2"
     local option_value
-    option_value=$(tmux show-option -gqv "$option")
+    option_value=$($TMUX_CMD_PATH show-option -gqv "$option")
     if [ -z "$option_value" ]; then
         echo "$default_value"
     else
@@ -121,13 +126,13 @@ display_message() {
     saved_display_time=$(get_tmux_option "display-time" "750")
 
     # sets message display time to 5 seconds
-    tmux set-option -gq display-time "$display_duration"
+    $TMUX_CMD_PATH set-option -gq display-time "$display_duration"
 
     # displays message
-    tmux display-message "$message"
+    $TMUX_CMD_PATH display-message "$message"
 
     # restores original 'display-time' value
-    tmux set-option -gq display-time "$saved_display_time"
+    $TMUX_CMD_PATH set-option -gq display-time "$saved_display_time"
 }
 
 command_exists() {
@@ -174,7 +179,7 @@ clipboard_copy_command() {
 }
 
 # Cache the TMUX version for speed.
-tmux_version="$(tmux -V | cut -d ' ' -f 2 | sed 's/next-//')"
+tmux_version="$($TMUX_CMD_PATH -V | cut -d ' ' -f 2 | sed 's/next-//')"
 
 tmux_is_at_least() {
     if [[ $tmux_version == "$1" ]] || [[ $tmux_version == master ]]; then
