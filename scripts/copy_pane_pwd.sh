@@ -3,11 +3,13 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HELPERS_DIR="$CURRENT_DIR"
 
+export TMUX_CMD_PATH=$(realpath "/proc/$(tmux display -p '#{pid}')/exe" 2> /dev/null || echo "tmux" | sed -z '$ s/\n$//')
+
 # shellcheck source=scripts/helpers.sh
 source "${HELPERS_DIR}/helpers.sh"
 
 pane_current_path() {
-    tmux display -p -F "#{pane_current_path}"
+    $TMUX_CMD_PATH display -p -F "#{pane_current_path}"
 }
 
 display_notice() {
@@ -22,7 +24,7 @@ main() {
     payload="$(pane_current_path | tr -d '\n')"
     # $copy_command below should not be quoted
     echo "$payload" | $copy_command
-    tmux set-buffer "$payload"
+    $TMUX_CMD_PATH set-buffer "$payload"
     display_notice
 }
 main
