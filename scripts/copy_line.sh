@@ -6,6 +6,7 @@ TMUX_COPY_MODE=""
 
 REMOTE_SHELL_WAIT_TIME="0.4"
 
+# shellcheck source=scripts/tmux_cmd_path.sh
 source "$CURRENT_DIR/tmux_cmd_path.sh"
 
 # shellcheck source=scripts/helpers.sh

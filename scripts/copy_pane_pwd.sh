@@ -3,6 +3,7 @@
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HELPERS_DIR="$CURRENT_DIR"
 
+# shellcheck source=scripts/tmux_cmd_path.sh
 source "$CURRENT_DIR/tmux_cmd_path.sh"
 
 # shellcheck source=scripts/helpers.sh

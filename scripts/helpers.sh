@@ -3,6 +3,7 @@
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# shellcheck source=scripts/tmux_cmd_path.sh
 source "$CURRENT_DIR/tmux_cmd_path.sh"
 
 yank_line="y"
