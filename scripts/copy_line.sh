@@ -27,6 +27,7 @@ add_sleep_for_remote_shells() {
 go_to_the_beginning_of_current_line() {
     if [ "$(shell_mode)" == "emacs" ]; then
         tmux send-key 'C-a'
+        sleep 0.05
     else
         tmux send-key 'Escape' '0'
     fi
