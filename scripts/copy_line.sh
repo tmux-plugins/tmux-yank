@@ -85,6 +85,10 @@ yank_to_clipboard() {
     fi
 }
 
+exit_copy_mode() {
+    tmux send-keys -X cancel
+}
+
 go_to_the_end_of_current_line() {
     if [ "$(shell_mode)" == "emacs" ]; then
         tmux send-keys 'C-e'
@@ -100,6 +104,7 @@ yank_current_line() {
     start_tmux_selection
     end_of_line_in_copy_mode
     yank_to_clipboard
+    exit_copy_mode
     go_to_the_end_of_current_line
     display_message 'Line copied to clipboard!'
 }
