@@ -28,7 +28,7 @@ set_error_bindings() {
 
 error_handling_if_command_not_present() {
     local copy_command="$1"
-    if [ -z "$copy_command" ]; then
+    if [ -z "$copy_command" ] && [ -n "$DISPLAY" ]; then
         set_error_bindings
         exit 0
     fi
