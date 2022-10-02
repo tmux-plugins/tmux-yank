@@ -28,7 +28,10 @@ set_error_bindings() {
 
 error_handling_if_command_not_present() {
     local copy_command="$1"
-    if [ -z "$copy_command" ]; then
+    if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+        local display_present=true
+    fi
+    if [ -z "$copy_command" ] && [ -n "$display_present" ]; then
         set_error_bindings
         exit 0
     fi
