@@ -40,6 +40,9 @@ custom_copy_command_option="@custom_copy_command"
 override_copy_command_default=""
 override_copy_command_option="@override_copy_command"
 
+yank_wayland_mouse_default="false"
+yank_wayland_mouse_option="@yank_wayland_mouse"
+
 # helper functions
 get_tmux_option() {
     local option="$1"
@@ -104,6 +107,10 @@ custom_copy_command() {
 override_copy_command() {
     get_tmux_option "$override_copy_command_option" "$override_copy_command_default"
 }
+
+yank_wayland_mouse() {
+    get_tmux_option "$yank_wayland_mouse_option" "$yank_wayland_mouse_default"
+}
 # Ensures a message is displayed for 5 seconds in tmux prompt.
 # Does not override the 'display-time' tmux option.
 display_message() {
@@ -149,7 +156,11 @@ clipboard_copy_command() {
     elif command_exists "clip.exe"; then # WSL clipboard command
         echo "cat | clip.exe"
     elif command_exists "wl-copy"; then # wl-clipboard: Wayland clipboard utilities
-        echo "wl-copy"
+        if [[ $mouse == "true" && $(yank_wayland_mouse) == "true" ]]; then
+            echo "wl-copy --$(yank_selection_mouse)"
+        else
+            echo "wl-copy"
+        fi
     elif command_exists "xsel"; then
         local xsel_selection
         if [[ $mouse == "true" ]]; then
