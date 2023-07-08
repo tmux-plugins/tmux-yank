@@ -16,6 +16,7 @@ Supports:
 -   macOS
 -   Cygwin
 -   Windows Subsystem for Linux (WSL)
+-   Termux
 
 Installing
 ----------
@@ -146,6 +147,14 @@ $ sudo yum install xsel # or xclip
 ### Windows Subsystem for Linux (WSL)
 
 -   `clip.exe` is shipped with Windows Subsystem for Linux.
+
+### Termux
+
+Install [Termux:API](https://github.com/termux/termux-api) plugin and
+`termux-api` package.
+``` sh
+$ pkg install termux-api
+```
 
 Configuration
 -------------
