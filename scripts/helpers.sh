@@ -168,6 +168,8 @@ clipboard_copy_command() {
         echo "xclip -selection $xclip_selection"
     elif command_exists "putclip"; then # cygwin clipboard command
         echo "putclip"
+    elif command_exists "termux-clipboard-set"; then # Termux clipboard command
+        echo "termux-clipboard-set"
     elif [ -n "$(custom_copy_command)" ]; then
         custom_copy_command
     fi
