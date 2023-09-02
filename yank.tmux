@@ -48,7 +48,7 @@ set_copy_mode_bindings() {
         tmux bind-key -T copy-mode-vi "$(yank_put_key)" send-keys -X copy-pipe-and-cancel "$copy_command; tmux paste-buffer -p"
         tmux bind-key -T copy-mode-vi "$(yank_wo_newline_key)" send-keys -X "$(yank_action)" "$copy_wo_newline_command"
         if [[ "$(yank_with_mouse)" == "on" ]]; then
-            tmux bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X "$(yank_action)" "$copy_command_mouse"
+            tmux bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X "$(yank_mouse_action)" "$copy_command_mouse"
         fi
 
         tmux bind-key -T copy-mode "$(yank_key)" send-keys -X "$(yank_action)" "$copy_command"
@@ -56,7 +56,7 @@ set_copy_mode_bindings() {
         tmux bind-key -T copy-mode "$(yank_put_key)" send-keys -X copy-pipe-and-cancel "$copy_command; tmux paste-buffer -p"
         tmux bind-key -T copy-mode "$(yank_wo_newline_key)" send-keys -X "$(yank_action)" "$copy_wo_newline_command"
         if [[ "$(yank_with_mouse)" == "on" ]]; then
-            tmux bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$(yank_action)" "$copy_command_mouse"
+            tmux bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$(yank_mouse_action)" "$copy_command_mouse"
         fi
     else
         tmux bind-key -t vi-copy "$(yank_key)" copy-pipe "$copy_command"
