@@ -47,16 +47,23 @@ set_copy_mode_bindings() {
         tmux bind-key -T copy-mode-vi "$(put_key)" send-keys -X copy-pipe-and-cancel "tmux paste-buffer -p"
         tmux bind-key -T copy-mode-vi "$(yank_put_key)" send-keys -X copy-pipe-and-cancel "$copy_command; tmux paste-buffer -p"
         tmux bind-key -T copy-mode-vi "$(yank_wo_newline_key)" send-keys -X "$(yank_action)" "$copy_wo_newline_command"
-        if [[ "$(yank_with_mouse)" == "on" ]]; then
-            tmux bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X "$(yank_action)" "$copy_command_mouse"
-        fi
 
         tmux bind-key -T copy-mode "$(yank_key)" send-keys -X "$(yank_action)" "$copy_command"
         tmux bind-key -T copy-mode "$(put_key)" send-keys -X copy-pipe-and-cancel "tmux paste-buffer -p"
         tmux bind-key -T copy-mode "$(yank_put_key)" send-keys -X copy-pipe-and-cancel "$copy_command; tmux paste-buffer -p"
         tmux bind-key -T copy-mode "$(yank_wo_newline_key)" send-keys -X "$(yank_action)" "$copy_wo_newline_command"
+
         if [[ "$(yank_with_mouse)" == "on" ]]; then
+            tmux bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X "$(yank_action)" "$copy_command_mouse"
+            tmux bind-key -T copy-mode-vi DoubleClick1Pane "select-pane ; send-keys -X select-word ; run-shell -d 0.3 ; send-keys -X \"$(yank_action)\" \"$copy_command_mouse\""
+            tmux bind-key -T copy-mode-vi TripleClick1Pane "select-pane ; send-keys -X select-line ; run-shell -d 0.3 ; send-keys -X \"$(yank_action)\" \"$copy_command_mouse\""
+
             tmux bind-key -T copy-mode MouseDragEnd1Pane send-keys -X "$(yank_action)" "$copy_command_mouse"
+            tmux bind-key -T copy-mode DoubleClick1Pane "select-pane ; send-keys -X { select-word ; run-shell -d 0.3 ; send-keys -X \"$(yank_action)\" \"$copy_command_mouse\" }"
+            tmux bind-key -T copy-mode TripleClick1Pane "select-pane ; send-keys -X { select-line ; run-shell -d 0.3 ; send-keys -X \"$(yank_action)\" \"$copy_command_mouse\" }"
+
+            tmux bind-key -n DoubleClick1Pane "select-pane -t = ; if-shell -F \"#{||:#{pane_in_mode},#{mouse_any_flag}}\" { send-keys -M } { copy-mode -eH ; send-keys -X select-word ; run-shell -d 0.3 ; send-keys -X \"$(yank_action)\" \"$copy_command_mouse\" }"
+            tmux bind-key -n TripleClick1Pane "select-pane -t = ; if-shell -F \"#{||:#{pane_in_mode},#{mouse_any_flag}}\" { send-keys -M } { copy-mode -eH ; send-keys -X select-line ; run-shell -d 0.3 ; send-keys -X \"$(yank_action)\" \"$copy_command_mouse\" }"
         fi
     else
         tmux bind-key -t vi-copy "$(yank_key)" copy-pipe "$copy_command"
